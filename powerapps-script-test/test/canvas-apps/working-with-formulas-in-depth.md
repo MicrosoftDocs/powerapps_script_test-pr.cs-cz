@@ -19,12 +19,13 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42850415"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="understand-behavior-formulas-for-canvas-apps-in-powerapps"></a>Grundlegendes zu Verhaltensformeln für Canvas-Apps in PowerApps
 
 Die meisten Formeln berechnen einen Wert.  Wie in einer Excel-Tabelle erfolgt die Neuberechnung automatisch, sobald sich Werte ändern.  Wenn ein Wert kleiner als 0 (null) ist, soll das **[Label](controls/control-text-box.md)**-Steuerelement z.B. möglicherweise in Rot, andernfalls in Schwarz angezeigt werden. Dazu können Sie die **[Color](controls/properties-color-border.md)**-Eigenschaft des Steuerelements auf diese Formel festlegen:
 
-**If( Value(TextBox1.Text) >= 0, Color.Black, Color.Red )**
+**If( Value(TextBox1.Text) >= 0; Color.Black; Color.Red )**
 
 Was bedeutet es in diesem Kontext, wenn der Benutzer ein **[Schaltflächen](controls/control-button.md)**-Steuerelement auswählt?  Da kein Wert geändert wurde, muss nichts neu berechnet werden. Excel bietet kein Äquivalent zu einem **[Schaltfläche](controls/control-button.md)**-Steuerelement.  
 
@@ -41,7 +42,7 @@ Da diese Funktionen den Status der App ändern, können sie nicht automatisch ne
 ### <a name="more-than-one-action"></a>Mehr als eine Aktion
 Verwenden Sie Semikolons, um eine Liste von auszuführenden Aktionen zu erstellen. Wenn Sie z.B. eine Kontextvariable aktualisieren und dann zum vorherigen Bildschirm zurückkehren, verwenden Sie diese Formel:
 
-* **UpdateContext( { x: 1 } ); Back()**
+* **UpdateContext( { x: 1 } );; Back()**
 
 Aktionen werden in der Reihenfolge ausgeführt, in der sie in der Formel angezeigt werden.  Die nächste Funktion wird erst gestartet, wenn die aktuelle Funktion abgeschlossen wurde. Wenn ein Fehler auftritt, werden nachfolgende Funktionen möglicherweise nicht gestartet.
 

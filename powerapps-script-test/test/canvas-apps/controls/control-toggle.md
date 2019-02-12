@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42849223"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="toggle-control-in-powerapps"></a>Umschalten-Steuerelement in PowerApps
 Ein Steuerelement, das die Benutzer durch Verschieben des Handles aktivieren oder deaktivieren können.
@@ -105,14 +106,14 @@ Umschalten wurde für aktuelle GUIs entwickelt, verhält sich jedoch genauso wie
 **[Y](properties-size-location.md)** – Der Abstand zwischen dem oberen Rand eines Steuerelements und dem oberen Rand des übergeordneten Containers (bzw. des Bildschirms, wenn kein übergeordneter Container vorhanden ist).
 
 ## <a name="related-functions"></a>Verwandte Funktionen
-[**If**( *Condition*, *Result* )](../functions/function-if.md)
+[**If**( *Condition*; *Result* )](../functions/function-if.md)
 
 ## <a name="example"></a>Beispiel
 1. Fügen Sie Umschalten hinzu, und nennen Sie es **MemberDiscount**.
 
     Möchten Sie wissen, wie Sie [ein Steuerelement hinzufügen, benennen und konfigurieren](../add-configure-controls.md)?
 2. Fügen Sie eine Bezeichnung hinzu, und legen Sie deren Eigenschaft **[Text](properties-core.md)** auf diese Funktion fest:
-   <br>**If(MemberDiscount.Value = true, "Preis: $75", "Preis: $100")**
+   <br>**If(MemberDiscount.Value = true; "Preis: $75"; "Preis: $100")**
 
     Benötigen Sie weitere Informationen zur **[If](../functions/function-if.md)**-Funktion oder [anderen Funktionen](../formula-reference.md)?
 3. Drücken Sie F5, und ändern Sie den Wert der **MemberDiscount**.

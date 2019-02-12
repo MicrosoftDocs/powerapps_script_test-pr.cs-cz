@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42833284"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="language-function-in-powerapps"></a>Funktion „Language“ in PowerApps
 Gibt das Sprachkennzeichen des aktuellen Benutzers zurück
@@ -39,7 +40,7 @@ Ein *Sprachkennzeichen* kann eines der folgenden drei Formate aufweisen:
 
 PowerApps verwendet das [IETF BCP-47-Sprachkennzeichen](https://tools.ietf.org/html/bcp47)-Format.  
 
-Um eine Liste der unterstützten Sprachkennzeichen anzuzeigen, geben Sie **Value( "1", )** in die Bearbeitungsleiste oder die erweiterte Ansicht ein, und scrollen Sie durch die Liste der Gebietsschemas, die für das zweite Argument vorgeschlagen werden.  
+Um eine Liste der unterstützten Sprachkennzeichen anzuzeigen, geben Sie **Value( "1"; )** in die Bearbeitungsleiste oder die erweiterte Ansicht ein, und scrollen Sie durch die Liste der Gebietsschemas, die für das zweite Argument vorgeschlagen werden.  
 
 Die Funktionen **[Text](function-text.md)** und **[Value](function-value.md)** verwenden ebenfalls Sprachkennzeichen.  Verwenden Sie diese Funktionen, um auf global bewusste Weise von Textzeichenfolgen und in Textzeichenfolgen zu übersetzen.  Wenn ein Sprachtag an diese Funktionen übergeben wird und die Region keinen Unterschied machen würden, können Sie nur den Sprachteil des Kennzeichens verwenden.
 
@@ -78,7 +79,7 @@ Ein einfacher Ansatz zur Lokalisierung ist, ein Excel-Arbeitsblatt zu erstellen,
 
 Verwenden Sie in Ihrer App überall dort, wo Sie zuvor den Text **"Hello"** verwendet hätten, stattdessen diese Formel:
 
-* **LookUp( Table1, TextID = "Hello" && (LanguageTag = Left( Language(), 2 ) || IsBlank( LanguageTag ))).LocalizedText**  
+* **LookUp( Table1; TextID = "Hello" && (LanguageTag = Left( Language(); 2 ) || IsBlank( LanguageTag ))).LocalizedText**  
 
 Diese Formel schlägt den entsprechenden **LocalizedText**-Wert für die Sprache des Benutzers nach. Wenn dieser nicht gefunden wird, führt die Formel ein Fallback auf die Standardversion *blank* durch. 
 
@@ -92,7 +93,7 @@ Sie können Text nach Bedarf übersetzen, indem Sie einen Übersetzungsdienst wi
 
 Verwenden Sie in Ihrer App überall dort, wo Sie zuvor den Text **"Hello"** verwendet hätten, stattdessen diese Formel:
 
-* **MicrosoftTranslator.Translate( "Hello", Language() )**
+* **MicrosoftTranslator.Translate( "Hello"; Language() )**
 
 Der Microsoft Translator-Dienst verwendet die gleichen Sprachkennzeichen, die die **Language**-Funktion zurückgibt.
 

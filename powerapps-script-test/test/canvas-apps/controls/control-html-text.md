@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 10/16/2018
 ms.locfileid: "49307859"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="html-text-control-in-powerapps"></a>HTML-Textsteuerelement in PowerApps
 Ein Feld, in dem Text angezeigt wird und in dem HTML-Tags in Textformatierungen konvertiert werden.
@@ -75,7 +76,7 @@ In einem Steuerelement für **HTML-Text** werden nicht nur Klartext und Zahlen a
 **[Y](properties-size-location.md)** – Der Abstand zwischen dem oberen Rand eines Steuerelements und dem oberen Rand des übergeordneten Containers (bzw. des Bildschirms, wenn kein übergeordneter Container vorhanden ist).
 
 ## <a name="related-functions"></a>Verwandte Funktionen
-[**Find**( *FindString*, *WithinString* )](../functions/function-find.md)
+[**Find**( *FindString*; *WithinString* )](../functions/function-find.md)
 
 ## <a name="example"></a>Beispiel
 1. Fügen Sie ein **[Label](control-text-box.md)**-Steuerelement (Bezeichnung) hinzu, geben Sie ihm den Namen **Quelle**, und geben Sie als Wert für die **[Text](properties-core.md)**-Eigenschaft diese Zeichenfolge ein:

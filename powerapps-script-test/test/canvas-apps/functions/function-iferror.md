@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42851320"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="iferror-function-in-powerapps"></a>IfError-Funktion in PowerApps
 Erkennt Fehler und stellt einen Alternativwert bereit oder führt eine Aktion aus.
@@ -36,7 +37,7 @@ Verwenden Sie **IfError** in [Verhaltensformeln](../working-with-formulas-in-dep
 Wenn alle Argumente für **IfError** zu einem Fehler führen, wird der Wert des letzten Arguments (also ein Fehlerwert) zurückgegeben. 
 
 ## <a name="syntax"></a>Syntax
-**IfError**( *Wert*, *Ausweichformel1* [, *Ausweichformel2*, ... ] )
+**IfError**( *Wert*; *Ausweichformel1* [; *Ausweichformel2*; ... ] )
 
 * *Value*: Erforderlich. Ein oder mehrere Formeln, die auf einen Fehlerwert geprüft werden. 
 * *Ausweichformel(n)*: erforderlich. Die auszuwertenden Formeln und zurückzugebenden Werte, wenn für vorherige Argumente ein Fehler zurückgegeben wurde.  Die *Ausweichargumente* werden nacheinander ausgewertet, bis ein Wert gefunden wird, der kein Fehlerwert ist.
@@ -45,10 +46,10 @@ Wenn alle Argumente für **IfError** zu einem Fehler führen, wird der Wert des 
 
 | Formel | Beschreibung | Ergebnis |
 | --- | --- | --- |
-| **IfError( 1, 2 )** |Das erste Argument ist kein Fehlerwert.  Es wird zurückgegeben, und nachfolgende Argumente werden nicht ausgewertet.   | 1 |
-| **IfError( 1/0, 2 )** | Für das erste Argument wird ein Fehlerwert zurückgegeben (aufgrund der Division durch null).  Das zweite Argument wird ausgewertet. Der Wert ist kein Fehlerwert und wird zurückgegeben. | 2 | 
-| **IfError( 1/0, Notify( "There was an internal problem", NotificationType.Error ) )** | Für das erste Argument wird ein Fehlerwert zurückgegeben (aufgrund der Division durch null).  Das zweite Argument wird ausgewertet, und dem Benutzer wird eine Fehlermeldung angezeigt.  Der Rückgabewert von **IfError** ist der Rückgabewert von **Notify** und wird in denselben Typ wie das erste Argument für **IfError** (eine Zahl) umgewandelt. | 1 |
-| **IfError( 1/0, 1/0, 2, 1/0, 3 )** | Für das erste Argument wird ein Fehlerwert zurückgegeben (aufgrund der Division durch null).  Das zweite Argument wird ausgewertet und führt ebenfalls zu einem Fehlerwert (aufgrund einer weiteren Division durch null).  Das dritte Argument wird ausgewertet. Der Wert ist kein Fehlerwert und wird zurückgegeben.  Die Argumente vier und fünf werden ignoriert.  | 2 |
+| **IfError( 1; 2 )** |Das erste Argument ist kein Fehlerwert.  Es wird zurückgegeben, und nachfolgende Argumente werden nicht ausgewertet.   | 1 |
+| **IfError( 1/0; 2 )** | Für das erste Argument wird ein Fehlerwert zurückgegeben (aufgrund der Division durch null).  Das zweite Argument wird ausgewertet. Der Wert ist kein Fehlerwert und wird zurückgegeben. | 2 | 
+| **IfError( 1/0; Notify( "There was an internal problem"; NotificationType.Error ) )** | Für das erste Argument wird ein Fehlerwert zurückgegeben (aufgrund der Division durch null).  Das zweite Argument wird ausgewertet, und dem Benutzer wird eine Fehlermeldung angezeigt.  Der Rückgabewert von **IfError** ist der Rückgabewert von **Notify** und wird in denselben Typ wie das erste Argument für **IfError** (eine Zahl) umgewandelt. | 1 |
+| **IfError( 1/0; 1/0; 2; 1/0; 3 )** | Für das erste Argument wird ein Fehlerwert zurückgegeben (aufgrund der Division durch null).  Das zweite Argument wird ausgewertet und führt ebenfalls zu einem Fehlerwert (aufgrund einer weiteren Division durch null).  Das dritte Argument wird ausgewertet. Der Wert ist kein Fehlerwert und wird zurückgegeben.  Die Argumente vier und fünf werden ignoriert.  | 2 |
 
 ### <a name="step-by-step"></a>Schritt für Schritt
 
@@ -58,7 +59,7 @@ Wenn alle Argumente für **IfError** zu einem Fehler führen, wird der Wert des 
 
 3. Legen Sie für die **Text**-Eigenschaft von **Label1** die folgende Formel fest:
 
-    **IfError( Value( TextEingabe1.Text ), -1 )**
+    **IfError( Value( TextEingabe1.Text ); -1 )**
 
 4. Geben Sie in **TextEingabe1** die Zeichenfolge **1234** ein.  
 

@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42831647"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="create-and-update-a-collection-in-your-app"></a>Erstellen und Aktualisieren einer Sammlung in Ihrer App
 Verwenden Sie eine Sammlung zum Speichern von Daten, die in Ihrer App verwendet werden können. Eine Sammlung ist eine Gruppe von ähnlichen Elementen. Erstellen Sie beispielsweise eine MyImages-Sammlung mit den Abbildungen aller Produkte, die Ihr Unternehmen verkauft. In PowerApps können Sie Ihre MyImages-Sammlung hinzufügen und eine App erstellen, in der alle Abbildungen dieser Produkte angezeigt werden. Sie können aber z.B. auch eine PriceList-Sammlung erstellen, die die Produkte und Preise für jedes Produkt enthält.
@@ -42,7 +43,7 @@ Verwenden Sie die Funktion **Collect**, um eine Sammlung zu erstellen und ihr El
 
 1. Wählen Sie auf der Registerkarte**Insert** (Einfügen) die Option **Button** (Schaltfläche), um Ihrem Designer ein Schaltflächen-Steuerelement hinzuzufügen. In der Dropdown-Liste wird die Eigenschaft **[OnSelect](controls/properties-core.md)** aufgeführt. Legen Sie sie auf die folgende Funktion fest:  
    
-    ```Collect(Destinations, Destination!Text)```
+    ```Collect(Destinations; Destination!Text)```
    
     Es sollte wie folgt aussehen:
 
@@ -93,7 +94,7 @@ Die folgenden Schritte zeigen Ihnen, wie Sie mithilfe der Collect-Funktion in Ih
     > [!NOTE]
    > Sie können „Text Input“ durch Begriffe wie „City“ oder „States“ ersetzen, wie aus der Abbildung ersichtlich.  
 6. Wählen Sie auf der Registerkarte **Insert** (Einfügen) die Option **Button** (Schaltfläche) aus. Legen Sie die **[OnSelect](controls/properties-core.md)**-Eigenschaft auf die folgende Funktion fest:  
-   ```Collect(Destinations, {Cities:City!Text, States:States!Text})```  
+   ```Collect(Destinations; {Cities:City!Text; States:States!Text})```  
    
     Es sollte wie folgt aussehen:  
     ![][11]  
@@ -101,7 +102,7 @@ Die folgenden Schritte zeigen Ihnen, wie Sie mithilfe der Collect-Funktion in Ih
     > [!NOTE]
    > Mit dieser Funktion können Sie der Sammlung auch zusätzliche Spalten hinzufügen. Beispielsweise können Sie für „Country“ (Land) ein weiteres Texteingabe-Steuerelement hinzufügen, um eine Spalte für Länder hinzuzufügen:
    
-    `Collect(Destinations, {Cities:City!Text, States:States!Text}, {Countries:Country!Text})`
+    `Collect(Destinations; {Cities:City!Text; States:States!Text}; {Countries:Country!Text})`
 7. Benennen Sie das Schaltflächen-Steuerelement **AddCityStateButton** um, und legen Sie seine **[Text](controls/properties-core.md)**-Eigenschaft auf **Add City and State** (Stadt und Bundesstaat hinzufügen) fest:  
    ![][12]  
 
@@ -125,7 +126,7 @@ Die folgende Anleitung besteht aus mehreren Abschnitten. Wenn Sie die einzelnen 
    ![][14]  
 4. Wählen Sie auf der Registerkarte **Action** (Aktion) die Option **OnSelect** aus. Geben Sie die folgende Funktion ein:  
    
-    ```Collect(PriceList, Import1!Data)```  
+    ```Collect(PriceList; Import1!Data)```  
 5. Zeigen Sie eine Vorschau Ihrer App an. Wählen Sie die Schaltfläche **Import Data** (Daten importieren) und die Datei „PriceList.zip“ aus, und wählen Sie anschließend **Open** (Öffnen) aus.
 6. Schließen Sie das Vorschaufenster.
 7. Wählen Sie die Registerkarte **File** (Datei) aus und anschließend **Collections** (Sammlungen). Die von Ihnen importierten PriceList-Elemente werden aufgeführt:  
@@ -146,7 +147,7 @@ Die folgende Anleitung besteht aus mehreren Abschnitten. Wenn Sie die einzelnen 
    | Bezeichnung | Text-Eigenschaft festgelegt auf |
    | --- | --- |
    | Label1 |``ThisItem!Name`` |
-   | Label2 |``Text(ThisItem!Price, "$#")`` |
+   | Label2 |``Text(ThisItem!Price; "$#")`` |
    | Label3 |``ThisItem!Maker`` |
    
     Auf diese Weise werden die Bezeichnungen automatisch mit dem Namen, dem Preis und den Erstellerwerten innerhalb der PriceList-Sammlung aktualisiert.
@@ -159,13 +160,13 @@ Die folgende Anleitung besteht aus mehreren Abschnitten. Wenn Sie die einzelnen 
    ![][20]
 3. Legen Sie die **[OnSelect](controls/properties-core.md)**-Eigenschaft der Schaltfläche **Add** (Hinzufügen) auf den folgenden Ausdruck fest:  
    
-    ```Collect(OrderList, {Name:PriceGallery!Selected!Name, Qty:OrderQty!Value, Cost:OrderQty!Value*LookUp(PriceList, PriceGallery!Selected!Name in Name, Price)});SaveData(OrderList, "orderfile")```  
+    ```Collect(OrderList; {Name:PriceGallery!Selected!Name; Qty:OrderQty!Value; Cost:OrderQty!Value*LookUp(PriceList; PriceGallery!Selected!Name in Name; Price)});;SaveData(OrderList; "orderfile")```  
    
     > [!NOTE]
    > Wenn Sie diese Schaltfläche im weiteren Verlauf dieser Prozedur auswählen, erstellen und speichern Sie eine Sammlung mit dem Namen **OrderList**. Die Sammlung enthält den Namen des Produkts, das Sie im Katalog eingeben, die Menge, die Sie mit dem Schieberegler auswählen, und die Gesamtkosten, die sich durch die Multiplikation der Menge mit dem Preis des Produkts ergeben.
 4. Wählen Sie die Registerkarte **Screen** (Bildschirm) aus, und legen Sie die **[OnVisible](controls/control-screen.md)**-Eigenschaft auf den folgenden Ausdruck fest:  
    
-    ```If(IsEmpty(PriceList), LoadData(PriceList, "pricefile"));If(IsEmpty(OrderList), LoadData(OrderList, "orderfile"))```
+    ```If(IsEmpty(PriceList); LoadData(PriceList; "pricefile"));;If(IsEmpty(OrderList); LoadData(OrderList; "orderfile"))```
 
 Sehen Sie sich an, was Sie erstellt haben:
 
@@ -182,9 +183,9 @@ Sehen Sie sich an, was Sie erstellt haben:
 
 > [!TIP]
 > Zum Entfernen aller Elemente aus der Bestellliste fügen Sie eine Schaltfläche hinzu, legen ihre **[Text](controls/properties-core.md)**-Eigenschaft auf **Clear** (Deaktivieren) fest, und legen anschließend die **[OnSelect](controls/properties-core.md)**-Eigenschaft auf den folgenden Ausdruck fest:  
-> ```Clear(OrderList);SaveData(OrderList, "orderfile")```  
+> ```Clear(OrderList);;SaveData(OrderList; "orderfile")```  
 > Um alle Element einzeln zu entfernen, zeigen Sie die **OrderList**-Sammlung in einem Katalog an und legen anschließend die **[OnSelect](controls/properties-core.md)**-Eigenschaft einer Bezeichnung in dieser Sammlung auf folgenden Ausdruck fest:  
-> ```Remove(OrderList, ThisItem);SaveData(OrderList, "orderfile")```
+> ```Remove(OrderList; ThisItem);;SaveData(OrderList; "orderfile")```
 > 
 > 
 

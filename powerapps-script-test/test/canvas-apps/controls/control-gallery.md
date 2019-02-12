@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42831502"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="gallery-control-in-powerapps"></a>Bildkatalog-Steuerelement in PowerApps
 Ein Steuerelement, das andere Steuerelemente enthält und einen Datensatz anzeigt.
@@ -81,7 +82,7 @@ Es stehen vordefinierte Bildkatalog-Vorlagen für die Darstellung von Bildern, v
 **[Y](properties-size-location.md)** – Der Abstand zwischen dem oberen Rand eines Steuerelements und dem oberen Rand des übergeordneten Containers (bzw. des Bildschirms, wenn kein übergeordneter Container vorhanden ist).
 
 ## <a name="related-functions"></a>Verwandte Funktionen
-[**Filter**( *DataSource*, *Formula* )](../functions/function-filter-lookup.md)
+[**Filter**( *DataSource*; *Formula* )](../functions/function-filter-lookup.md)
 
 ## <a name="examples"></a>Beispiele
 ### <a name="show-and-filter-data"></a>Anzeigen und Filtern von Daten

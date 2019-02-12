@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42854811"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="show-edit-or-add-a-record-from-a-table-in-powerapps"></a>Datensatz aus einer Tabelle in PowerApps anzeigen, bearbeiten oder hinzufügen
 
@@ -51,7 +52,7 @@ Wenn alle Felder in einem Datensatz angezeigt werden sollen, müssen Sie ein **[
 
 3. Legen Sie die **[DataSource](controls/control-form-detail.md)**-Eigenschaft des Formulars auf **FlooringEstimates** und die **[Item](controls/control-form-detail.md)**-Eigenschaft des Formulars auf diese Formel fest:
 
-   **First(Filter(FlooringEstimates, Name=ChooseProduct.Selected.Value))**
+   **First(Filter(FlooringEstimates; Name=ChooseProduct.Selected.Value))**
 
    Mit dieser Formel wird angegeben, dass im Formular nach abgeschlossener Konfiguration der Datensatz angezeigt wird, den der Benutzer in **ChooseProduct** auswählt.
 

@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42849200"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="shape-controls-and-icon-controls-in-powerapps"></a>Shape-Steuerelemente und Symbole für Steuerelemente in PowerApps
 Grafiken, deren Eigenschaften wie Aussehen und Verhalten Sie konfigurieren können
@@ -60,7 +61,7 @@ Diese Steuerelemente umfassen Pfeile, geometrische Formen, Aktionssymbole und Sy
 
 ## <a name="related-functions"></a>Verwandte Funktionen
 
-[**Navigate**( *ScreenName*, *ScreenTransition* )](../functions/function-navigate.md)
+[**Navigate**( *ScreenName*; *ScreenTransition* )](../functions/function-navigate.md)
 
 ## <a name="example"></a>Beispiel
 
@@ -69,13 +70,13 @@ Diese Steuerelemente umfassen Pfeile, geometrische Formen, Aktionssymbole und Sy
     Möchten Sie wissen, wie Sie ein [Steuerelement hinzufügen und konfigurieren](../add-configure-controls.md)?
 
 2. Fügen Sie ein **[Bildschirm](control-screen.md)**-Steuerelement hinzu, und nennen Sie es **Source**.
-3. Fügen Sie in **Source** ein **Shape**-Steuerelement hinzu, und legen Sie seine **[OnSelect](properties-core.md)**-Eigenschaft auf diese Formel fest:<br>**Navigate(Target, ScreenTransition.Fade)**
+3. Fügen Sie in **Source** ein **Shape**-Steuerelement hinzu, und legen Sie seine **[OnSelect](properties-core.md)**-Eigenschaft auf diese Formel fest:<br>**Navigate(Target; ScreenTransition.Fade)**
 4. Drücken Sie F5, und klicken oder tippen Sie anschließend auf das **Shape**-Steuerelement.
 
     Der Bildschirm **Target** wird angezeigt.
 
 5. (optional) Drücken Sie die ESC-TASTE, um zum Standardarbeitsbereich zurückzukehren, fügen Sie ein **Shape**-Steuerelement zu **Target** hinzu, und legen Sie die **[OnSelect](properties-core.md)**-Eigenschaft des **Shape**-Steuerelements auf diese Formel fest:
-   <br>**Navigate(Source, ScreenTransition.Fade)**
+   <br>**Navigate(Source; ScreenTransition.Fade)**
 
 
 ## <a name="accessibility-guidelines"></a>Richtlinien für Barrierefreiheit

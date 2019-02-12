@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42834817"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="concurrent-function-in-powerapps"></a>Concurrent-Funktion in PowerApps
 Wertet mehrere Formeln gleichzeitig aus.
@@ -30,7 +31,7 @@ Verwenden Sie **Concurrent** in der Eigenschaft [**OnStart**](../controls/contro
 
 Sie können die Reihenfolge, in der Formeln in der **Concurrent**-Funktion beginnen, nicht vorhersagen oder die Evaluierung beenden. Formeln innerhalb der **Concurrent**-Funktion sollten keine Abhängigkeiten von anderen Formeln innerhalb der gleichen **Concurrent**-Funktion enthalten. PowerApps gibt einen Fehler aus, sollte dies doch passieren. Sie können problemlos Abhängigkeiten von Formeln von innerhalb der **Concurrent**-Funktion außerhalb der Funktion verwenden, da diese abgeschlossen werden, bevor die **Concurrent**-Funktion startet. Formeln nach der **Concurrent**-Funktion können Abhängigkeiten sicher auf Formeln anwenden: Sie werden alle abgeschlossen, bevor die **Concurrent**-Funktion beendet wird und mit der nächsten Formel in einer Kette beginnt (wenn Sie den Operator **;** oder **;;** verwenden). Achten Sie auf subtile Reihenfolgenabhängigkeiten, wenn Sie Funktionen oder Dienstmethoden aufrufen, die Nebeneffekte haben.
 
-Sie können Formeln mit dem Operator **;** (oder **;;**) in einem Argument zu **Concurrent** verketten. Beispielsweise wertet **Concurrent( Set( a, 1 ); Set( b, a+1 ), Set( x, 2 ); Set( y, x+2 ) )** **Set( a, 1 ); Set( b, a+1 )** gleichzeitig mit **Set( x, 2 ); Set( y, x+2 )** aus. In diesem Fall sehen die Abhängigkeiten in den Formeln gut aus: **a** wird vor **b** festgelegt und **x** vor **y**.
+Sie können Formeln mit dem Operator **;** (oder **;;**) in einem Argument zu **Concurrent** verketten. Beispielsweise wertet **Concurrent( Set( a; 1 );; Set( b; a+1 ); Set( x; 2 );; Set( y; x+2 ) )** **Set( a; 1 );; Set( b; a+1 )** gleichzeitig mit **Set( x; 2 );; Set( y; x+2 )** aus. In diesem Fall sehen die Abhängigkeiten in den Formeln gut aus: **a** wird vor **b** festgelegt und **x** vor **y**.
 
 Je nach Gerät oder Browser, auf bzw. in dem die App ausgeführt wird, können nur eine Handvoll Formeln tatsächlich gleichzeitig ausgewertet werden. **Concurrent** verwendet die verfügbaren Funktionen und wird nicht beendet, bevor nicht alle Formeln ausgewertet wurden.
 
@@ -39,7 +40,7 @@ Wenn Sie die **Fehlerverwaltung auf Formelebene** (in den erweiterten Einstellun
 Verwenden Sie **Concurrent** nur in [Verhaltensformeln](../working-with-formulas-in-depth.md).
 
 ## <a name="syntax"></a>Syntax
-**Concurrent**( *Formel1*, *Formel2* [, ...] )
+**Concurrent**( *Formel1*; *Formel2* [; ...] )
 
 * *Formel(n)*: Erforderlich Formeln, die gleichzeitig ausgewertet werden sollen. Sie müssen mindestens zwei Formeln angeben.
 
@@ -55,7 +56,7 @@ Verwenden Sie **Concurrent** nur in [Verhaltensformeln](../working-with-formulas
 
 2. Fügen Sie ein **[Schaltflächen](../controls/control-button.md)**-Steuerelement hinzu, und legen Sie seine **OnSelect**-Eigenschaft auf folgende Formel fest:
 
-    **ClearCollect( Product, '[SalesLT].[Product]' );<br> ClearCollect( Customer, '[SalesLT].[Customer]' );<br> ClearCollect( SalesOrderDetail, '[SalesLT].[SalesOrderDetail]' );<br> ClearCollect( SalesOrderHeader, '[SalesLT].[SalesOrderHeader]' )**
+    **ClearCollect( Product; '[SalesLT].[Product]' );;<br> ClearCollect( Customer; '[SalesLT].[Customer]' );;<br> ClearCollect( SalesOrderDetail; '[SalesLT].[SalesOrderDetail]' );;<br> ClearCollect( SalesOrderHeader; '[SalesLT].[SalesOrderHeader]' )**
 
 3. Aktivieren Sie in [Microsoft Edge](https://docs.microsoft.com/microsoft-edge/devtools-guide/network) oder [Google Chrome](https://developers.google.com/web/tools/chrome-devtools/network-performance/) die Entwicklertools, um den Netzwerkdatenverkehr zu überwachen, während Ihre App ausgeführt wird.
 
@@ -73,7 +74,7 @@ Verwenden Sie **Concurrent** nur in [Verhaltensformeln](../working-with-formulas
 
 1. Fügen Sie ein zweites **[Schaltflächen](../controls/control-button.md)**-Steuerelement hinzu, und legen Sie seine **OnSelect**-Eigenschaft auf folgende Formel fest:
 
-    **Concurrent(<br> &nbsp;&nbsp;&nbsp;&nbsp;ClearCollect( Product, '[SalesLT].[Product]' ),<br> &nbsp;&nbsp;&nbsp;&nbsp;ClearCollect( Customer, '[SalesLT].[Customer]' ),<br> &nbsp;&nbsp;&nbsp;&nbsp;ClearCollect( SalesOrderDetail, '[SalesLT].[SalesOrderDetail]' ),<br> &nbsp;&nbsp;&nbsp;&nbsp;ClearCollect( SalesOrderHeader, '[SalesLT].[SalesOrderHeader]' )<br> )**
+    **Concurrent(<br> &nbsp;&nbsp;&nbsp;&nbsp;ClearCollect( Product; '[SalesLT].[Product]' );<br> &nbsp;&nbsp;&nbsp;&nbsp;ClearCollect( Customer; '[SalesLT].[Customer]' );<br> &nbsp;&nbsp;&nbsp;&nbsp;ClearCollect( SalesOrderDetail; '[SalesLT].[SalesOrderDetail]' );<br> &nbsp;&nbsp;&nbsp;&nbsp;ClearCollect( SalesOrderHeader; '[SalesLT].[SalesOrderHeader]' )<br> )**
 
     Beachten Sie, dass Sie die gleichen **ClearCollect**-Aufrufe der ersten Schaltfläche hinzugefügt haben, diese jedoch dieses Mal in einer **Concurrent**-Funktion umschlossen und mit Kommas getrennt sind.
 
@@ -99,7 +100,7 @@ Verwenden Sie **Concurrent** nur in [Verhaltensformeln](../working-with-formulas
 
 3. Fügen Sie ein **Schaltflächen**-Steuerelement hinzu, und legen Sie seine **OnSelect**-Eigenschaft auf folgende Formel fest:
 
-    **Set( StartTime, Value(Now()) );<br> Concurrent(<br> &nbsp;&nbsp;&nbsp;&nbsp;Set(FRTrans, MicrosoftTranslator.Translate(TextInput1.Text,"fr")); Set(FRTransTime, Value(Now()) ),<br> &nbsp;&nbsp;&nbsp;&nbsp;Set(DETrans, MicrosoftTranslator.Translate(TextInput1.Text,"de")); Set(DETransTime, Value(Now()) )<br> ); <br> Collect( <br> &nbsp;&nbsp;&nbsp;&nbsp;Results, <br> &nbsp;&nbsp;&nbsp;&nbsp;{<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Input: TextInput1.Text, <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;French: FRTrans, FrenchTime: FRTransTime-StartTime,<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;German: DETrans, GermanTime: DETransTime-StartTime,<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FrenchFaster: FRTransTime < DETransTime <br> &nbsp;&nbsp;&nbsp;&nbsp;}<br> )**
+    **Set( StartTime; Value(Now()) );;<br> Concurrent(<br> &nbsp;&nbsp;&nbsp;&nbsp;Set(FRTrans; MicrosoftTranslator.Translate(TextInput1.Text;"fr"));; Set(FRTransTime; Value(Now()) );<br> &nbsp;&nbsp;&nbsp;&nbsp;Set(DETrans; MicrosoftTranslator.Translate(TextInput1.Text;"de"));; Set(DETransTime; Value(Now()) )<br> );; <br> Collect( <br> &nbsp;&nbsp;&nbsp;&nbsp;Results; <br> &nbsp;&nbsp;&nbsp;&nbsp;{<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Input: TextInput1.Text; <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;French: FRTrans; FrenchTime: FRTransTime-StartTime;<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;German: DETrans; GermanTime: DETransTime-StartTime;<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FrenchFaster: FRTransTime < DETransTime <br> &nbsp;&nbsp;&nbsp;&nbsp;}<br> )**
 
 4. Fügen Sie ein Steuerelements des Typs [**Datentabelle**](../controls/control-data-table.md) hinzu, und legen Sie seine **Items**-Eigenschaft auf **Results** (Ergebnisse) fest.
 

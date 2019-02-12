@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42859984"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="errors-function-in-powerapps"></a>Funktion „Errors“ in PowerApps
 Enthält Fehlerinformationen zu vorherigen Änderungen an einer [Datenquelle](../working-with-data-sources.md).
@@ -61,7 +62,7 @@ Fehler können für die gesamte Datenquelle oder nur für eine ausgewählte Zeil
 Wenn keine Fehler vorliegen, ist die Tabelle, die **Errors** zurückgibt, [leer](function-isblank-isempty.md) und kann mit der **[IsEmpty](function-isblank-isempty.md)**-Funktion getestet werden.
 
 ## <a name="syntax"></a>Syntax
-**Errors**( *DataSource* [, *Record* ] )
+**Errors**( *DataSource* [; *Record* ] )
 
 * *DataSource*: erforderlich. Die Datenquelle, für die Fehler zurückgegeben werden sollen.
 * *Record*: optional.  Ein bestimmter Datensatz, für den Fehler zurückgegeben werden sollen. Wenn Sie dieses Argument nicht angeben, gibt die Funktion für die gesamte Datenquelle Fehler zurück.
@@ -74,17 +75,17 @@ In diesem Beispiel arbeiten wir mit der Datenquelle **IceCream**:
 
 Über die App lädt ein Benutzer den Schokoladendatensatz in ein Dateneingabeformular und ändert anschließend den Wert für **Quantity** auf 90.  Der Datensatz, mit dem gearbeitet wird, befindet sich in der [Kontextvariablen](../working-with-variables.md#create-a-context-variable) **EditRecord**:
 
-* **UpdateContext( { EditRecord: First( Filter( IceCream, Flavor = "Chocolate" ) ) } )**
+* **UpdateContext( { EditRecord: First( Filter( IceCream; Flavor = "Chocolate" ) ) } )**
 
 Für diese Änderung in der Datenquelle wird die **[Patch](function-patch.md)**-Funktion verwendet:
 
-* **Patch( IceCream, EditRecord, Gallery.Updates )**
+* **Patch( IceCream; EditRecord; Gallery.Updates )**
 
 wobei **Gallery.Updates** den Wert **{Quantity: 90}** ergibt, da nur die **Quantity**-Eigenschaft geändert wurde.
 
 Leider hat eine andere Person kurz vor dem Aufrufen der **[Patch](function-patch.md)**-Funktion den Wert für **Quantity** für Schokolade auf 80 geändert.  PowerApps erkennt dies und verhindert einen Änderungskonflikt.  Sie können dies anhand der folgenden Formel überprüfen:
 
-* **IsEmpty( Errors( IceCream, EditRecord ) )**
+* **IsEmpty( Errors( IceCream; EditRecord ) )**
 
 Diese gibt **FALSE** zurück, da die **Errors**-Funktion die folgende Tabelle zurückgegeben hat:
 
@@ -95,12 +96,12 @@ Diese gibt **FALSE** zurück, da die **Errors**-Funktion die folgende Tabelle zu
 Sie können eine Bezeichnung auf dem Formular platzieren, um dem Benutzer diesen Fehler anzeigen.
 
 * Um den Fehler anzuzeigen, legen Sie die Bezeichnung der  **[Text](../controls/properties-core.md)**-Eigenschaft auf diese Formel fest:<br>
-  **Label.Text = First(Errors( IceCream, EditRecord )).Message**
+  **Label.Text = First(Errors( IceCream; EditRecord )).Message**
 
 Sie können auch eine **Reload**-Schaltfläche zum erneuten Laden im Formular hinzufügen, damit der Benutzer den Konflikt effizient beheben kann.
 
 * Um die Schaltfläche nur dann anzuzeigen, wenn ein Konflikt aufgetreten ist, legen Sie die **[Visible](../controls/properties-core.md)**-Eigenschaft der Schaltfläche auf diese Formel fest:<br>
-    **!IsEmpty( Lookup( Errors( IceCream, EditRecord ), Error = ErrorKind.Conflict ) )**
+    **!IsEmpty( Lookup( Errors( IceCream; EditRecord ); Error = ErrorKind.Conflict ) )**
 * Sie können die Änderung rückgängig machen, für die der Benutzer die Schaltfläche auswählt, indem Sie die **[OnSelect](../controls/properties-core.md)**-Eigenschaft auf diese Formel festlegen:<br>
-    **ReloadButton.OnSelect = Revert( IceCream, EditRecord )**
+    **ReloadButton.OnSelect = Revert( IceCream; EditRecord )**
 

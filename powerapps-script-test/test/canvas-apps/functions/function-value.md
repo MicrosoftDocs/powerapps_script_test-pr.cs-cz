@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42853509"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="value-function-in-powerapps"></a>Funktion „Value“ in PowerApps
 Konvertiert eine Textzeichenfolge in eine Zahl
@@ -39,7 +40,7 @@ Wenn die Anzahl nicht in einem entsprechenden Format ist, gibt **Value** *blank*
 Verwenden Sie zum Konvertieren von Datums-und Uhrzeitwerten die Funktionen [**DateValue**](function-datevalue-timevalue.md), [ **TimeValue**](function-datevalue-timevalue.md) oder [**DateTimeValue**](function-datevalue-timevalue.md).
 
 ## <a name="syntax"></a>Syntax
-**Value**(*Zeichenfolge* [,*LanguageTag*])
+**Value**(*Zeichenfolge* [;*LanguageTag*])
 
 * *Zeichenfolge*: erforderlich. Die Zeichenfolge, die in einen numerischen Wert konvertiert werden soll
 * *LanguageTag*: optional.  Das Sprachkennzeichen, in dem die Zeichenfolge analysiert werden soll.  Standardmäßig wird die Sprache des aktuellen Benutzers verwendet, wenn die Sprache nicht angegeben wurde.
@@ -50,9 +51,9 @@ Der Benutzer, der diese Formeln ausführt, befindet sich in den USA und hat Engl
 | Formel | Beschreibung | Ergebnis |
 | --- | --- | --- |
 | **Value( "123.456" )** |Die Standardsprache "En-US" wird verwendet, in der ein Punkt als Dezimaltrennzeichen verwendet wird. |123.456 |
-| **Value( "123.456", "es-ES" )** |"es-ES" steht für Spanisch (Spanien).  In Spanien ist ein Punkt ein Tausendertrennzeichen. |123456 |
+| **Value( "123.456"; "es-ES" )** |"es-ES" steht für Spanisch (Spanien).  In Spanien ist ein Punkt ein Tausendertrennzeichen. |123456 |
 | **Value( "123,456" )** |Die Standardsprache "En-US" wird verwendet, in der ein Komma als Tausendertrennzeichen verwendet wird. |123456 |
-| **Value( "123,456", "es-ES" )** |"es-ES" steht für Spanisch (Spanien).  In Spanien ist das Dezimaltrennzeichen ein Komma. |123.456 |
+| **Value( "123,456"; "es-ES" )** |"es-ES" steht für Spanisch (Spanien).  In Spanien ist das Dezimaltrennzeichen ein Komma. |123.456 |
 | **Value( "12.34%" )** |Das Prozentzeichen am Ende der Zeichenfolge gibt an, dass dies ein Prozentsatz ist. |0.1234 |
 | **Value( "$ 12.34" )** |Das Währungssymbol der aktuellen Sprache wird ignoriert. |12.34 |
 | **Value( "24e3" )** |Wissenschaftliche Schreibweise für 12 x 10<sup>3</sup>. |24000 |

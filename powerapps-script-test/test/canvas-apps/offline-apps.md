@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 10/24/2018
 ms.locfileid: "49991767"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="develop-offline-capable-canvas-apps"></a>Entwickeln von offlinefähigen Canvas-Apps
 
@@ -114,7 +115,7 @@ Diese Formel überprüft, ob das Gerät online ist:
    * **ThisItem.TweetText**
    * **ThisItem.UserDetails.FullName & " \@" & ThisItem.UserDetails.UserName**
    * **"RT: " & ThisItem.RetweetCount**
-   * **Text(DateTimeValue(ThisItem.CreatedAtIso), DateTimeFormat.ShortDateTime)**
+   * **Text(DateTimeValue(ThisItem.CreatedAtIso); DateTimeFormat.ShortDateTime)**
 4. Fügen Sie ein **Image**-Steuerelement hinzu, und legen Sie die **Image**-Eigenschaft auf **ThisItem.UserDetails.ProfileImageUrl** fest.
 
 ### <a name="step-5-add-a-connection-status-label"></a>Schritt 5: Hinzufügen einer Verbindungsstatusbezeichnung

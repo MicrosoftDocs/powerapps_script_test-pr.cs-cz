@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42834725"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="datevalue-timevalue-and-datetimevalue-functions-in-powerapps"></a>Die Funktionen „DateValue“, „TimeValue“ und „DateTimeValue“ in PowerApps
 Konvertiert ein Datum und/oder eine Uhrzeit in einer Zeichenfolge in einen Datum/Uhrzeit-Wert
@@ -48,7 +49,7 @@ Weitere Informationen finden Sie unter [Working with dates and times (Arbeiten m
 Informationen zum Konvertieren von Zahlen finden Sie unter der **[Value](function-value.md)**-Funktion.
 
 ## <a name="syntax"></a>Syntax
-**DateValue**( *String* [, *Language* ])<br>**DateTimeValue**( *String* [, *Language* ])<br>**TimeValue**( *String* [, *Language* ])
+**DateValue**( *String* [; *Language* ])<br>**DateTimeValue**( *String* [; *Language* ])<br>**TimeValue**( *String* [; *Language* ])
 
 * *Zeichenfolge*: erforderlich.  Eine Textzeichenfolge, die einen Datum-, Uhrzeit- oder einen Datum/Uhrzeit-Wert enthält.
 * *Sprache*: optional.  Eine Sprachzeichenfolge, wie man sie durch die ersten beiden Zeichen des Rückgabewertes der **[Language](function-language.md)**-Funktion erhält.  Wenn nicht anders angegebenen, wird die Sprache des Clients des aktuellen Benutzers verwendet.  
@@ -57,35 +58,35 @@ Informationen zum Konvertieren von Zahlen finden Sie unter der **[Value](functio
 ### <a name="datevalue"></a>DateValue
 Wenn Sie **10/11/2014** in ein Texteingabe-Steuerelement mit dem Namen **StartDate** eingegeben haben, und Sie dann die **[Text](../controls/properties-core.md)**-Eigenschaft einer Bezeichnung für diese Funktion festgelegt haben, gibt es mehrere Möglichkeiten:
 
-* **Text(DateValue(Startdate.Text), DateTimeFormat.LongDate)**
+* **Text(DateValue(Startdate.Text); DateTimeFormat.LongDate)**
   
     Die Bezeichnung zeigt **Saturday, October 11, 2014** an, wenn das Gebietsschema Ihres Computers auf **en** festgelegt wurde.
   
     > [!NOTE]
   > Sie können mehrere Optionen mit dem **DateTimeFormat**-Parameter verwenden, allerdings nicht **LongDateTime**. Geben Sie den Parameter, unmittelbar gefolgt von einem Ausrufezeichen, in das Funktionsfeld ein, um eine Liste dieser Optionen anzuzeigen.
-* **Text(DateValue(Startdate.Text, "fr"), DateTimeFormat.LongDate)**
+* **Text(DateValue(Startdate.Text; "fr"); DateTimeFormat.LongDate)**
   
     Die Bezeichnung zeigt **Monday, November 10, 2014** an.
 
 Wenn Sie dasselbe für **October 20, 2014** durchgeführt haben:
 
-* **DateDiff(DateValue(Startdate.Text), Today())**
+* **DateDiff(DateValue(Startdate.Text); Today())**
   
     Wenn die Sprache Ihres Computers auf **en** festgelegt wurde, zeigt die Bezeichnung **9** an, was die Anzahl der Tage zwischen dem 11. und 20. Oktober ist. Die **[DateDiff](function-dateadd-datediff.md)**-Funktion kann auch die Differenz in Monaten, Quartalen oder Jahren angezeigt.
 
 ### <a name="datetimevalue"></a>DateTimeValue
 Wenn Sie **10/11/2014 1:50:24.765 PM** in ein Texteingabe-Steuerelement mit dem Namen **Start** eingegeben haben, und Sie anschließend die **[Text](../controls/properties-core.md)**-Eigenschaft einer Bezeichnung auf folgende Funktion festgelegt haben, gibt es mehrere Möglichkeiten:
 
-* **Text(DateTimeValue(Start.Text), DateTimeFormat.LongDateTime)**
+* **Text(DateTimeValue(Start.Text); DateTimeFormat.LongDateTime)**
   
     Die Bezeichnung zeigt **Saturday, October 11, 2014 1:50:24 PM**, wenn das Gebietsschema Ihres Computers auf „en“ konfiguriert wurde.
   
     > [!NOTE]
   > Sie können mehrere Optionen mit dem **DateTimeFormat**-Parameter verwenden, allerdings nicht **LongDateTime**. Geben Sie den Parameter, unmittelbar gefolgt von einem Ausrufezeichen, in das Funktionsfeld ein, um eine Liste dieser Optionen anzuzeigen.
-* **Text(DateTimeValue(Start.Text, "fr"), DateTimeFormat.LongDateTime)**
+* **Text(DateTimeValue(Start.Text; "fr"); DateTimeFormat.LongDateTime)**
   
     Die Bezeichnung zeigt **Monday, November 10, 2014 1:50:24 PM** an.
-* **Text(DateTimeValue(Start.Text), "dddd, mmmm dd, yyyy hh:mm:ss.fff AM/PM")**
+* **Text(DateTimeValue(Start.Text); "dddd, mmmm dd, yyyy hh:mm:ss.fff AM/PM")**
   
     Die Bezeichnung zeigt **Saturday, October 11, 2014 01:50:24:765 PM**, wenn das Gebietsschema Ihres Computers auf **en** festgelegt ist.
   
@@ -94,7 +95,7 @@ Wenn Sie **10/11/2014 1:50:24.765 PM** in ein Texteingabe-Steuerelement mit dem 
 ### <a name="timevalue"></a>TimeValue
 Benennen Sie ein Texteingabe-Steuerelement **FinishedAt**, und legen Sie die **[Text](../controls/properties-core.md)**-Eigenschaft einer Bezeichnung auf folgende Funktion fest:
 
-**If(TimeValue(FinishedAt.Text)<TimeValue("5:00:00.000 PM"), "You made it!", "Too late!")**
+**If(TimeValue(FinishedAt.Text)<TimeValue("5:00:00.000 PM"); "You made it!"; "Too late!")**
 
 * Wenn Sie **4:59:59.999 PM** in das **FinishedAt**-Steuerelement eingegeben haben, zeigt die Bezeichnung „You made it!“ (Geschafft!) an
 * Wenn Sie **5:00:00.000 PM** in das **FinishedAt**-Steuerelement eingeben, zeigt die Bezeichnung „Too late!“ (Zu spät!) an

@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42853680"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="radio-control-in-powerapps"></a>Radio-Steuerelement in PowerApps
 
@@ -126,19 +127,19 @@ Das Steuerelement kann über ein horizontales oder vertikales Layout verfügen.
 
 ## <a name="related-functions"></a>Verwandte Funktionen
 
-[**Distinct**( *DataSource*, *ColumnName* )](../functions/function-distinct.md)
+[**Distinct**( *DataSource*; *ColumnName* )](../functions/function-distinct.md)
 
 ## <a name="example"></a>Beispiel
 
 1. Fügen Sie das **Radio**-Steuerelement hinzu, nennen Sie es **Pricing**, und legen Sie seine **[Items](properties-core.md)**-Eigenschaft auf die folgende Formel fest:
 
-    **["Standard", "Premium"]**
+    **["Standard"; "Premium"]**
 
     Möchten Sie wissen, wie Sie [ein Steuerelement hinzufügen, benennen und konfigurieren](../add-configure-controls.md)?
 
 2. Fügen Sie ein Steuerelement **[Label](control-text-box.md)** (Bezeichnung) hinzu, verschieben Sie es unter das **Radio**-Steuerelement (Optionsfeld) und legen Sie die Eigenschaft **[Text](properties-core.md)** des Steuerelements **[Label](control-text-box.md)** auf diese Formel fest:
 
-    **If("Premium" in Pricing.Selected.Value, "$200 pro Tag", "$150 pro Tag")**
+    **If("Premium" in Pricing.Selected.Value; "$200 pro Tag"; "$150 pro Tag")**
 
     Benötigen Sie weitere Informationen zur **[If](../functions/function-if.md)**-Funktion oder [anderen Funktionen](../formula-reference.md)?
 

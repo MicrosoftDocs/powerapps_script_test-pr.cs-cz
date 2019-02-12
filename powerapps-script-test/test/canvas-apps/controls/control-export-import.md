@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 10/17/2018
 ms.locfileid: "49384269"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="export-control-and-import-control-in-powerapps"></a>Export-Steuerelement und Import-Steuerelement in PowerApps
 Steuerelemente zum Exportieren von Daten in eine lokale Datei und anschließenden Importieren dieser Daten in eine andere App in PowerApps.
@@ -116,7 +117,7 @@ Die Exportfunktion wird in Webbrowsern nicht unterstützt.
 
 ## <a name="example"></a>Beispiel
 1. Fügen Sie ein **[Button](control-button.md)**-Steuerelement (Schaltfläche) hinzu, und legen Sie seine **[OnSelect](properties-core.md)**-Eigenschaft auf diese Formel fest:
-   <br>**ClearCollect(Products, {Name:"Europa", Price:"10.99"}, {Name:"Ganymede", Price:"12.49"}, {Name:"Callisto", Price:"11.79"})**
+   <br>**ClearCollect(Products; {Name:"Europa"; Price:"10.99"}; {Name:"Ganymede"; Price:"12.49"}; {Name:"Callisto"; Price:"11.79"})**
    
     Möchten Sie wissen, wie Sie [ein Steuerelement hinzufügen, benennen und konfigurieren](../add-configure-controls.md)?
    
@@ -126,7 +127,7 @@ Die Exportfunktion wird in Webbrowsern nicht unterstützt.
 4. Drücken Sie F5, klicken oder tippen Sie auf das **Export**-Steuerelement, und geben Sie dann den Namen der Datei an, in die Sie die Daten exportieren möchten.
 5. Klicken oder tippen Sie auf **Speichern**, und drücken Sie dann ESC, um zum Standardarbeitsbereich zurückzukehren.
 6. Fügen Sie in einer neuen oder vorhandenen App ein **Import**-Steuerelement hinzu, benennen Sie es mit **MyData**, und legen Sie seine **[OnSelect](properties-core.md)**-Eigenschaft auf diese Formel fest:<br>
-   **Collect(ImportedProducts, MyData.Data)**
+   **Collect(ImportedProducts; MyData.Data)**
 7. Drücken Sie F5, klicken oder tippen Sie auf **MyData**, klicken oder tippen Sie auf die Datei, die Sie exportiert haben, und klicken oder tippen Sie dann auf **Öffnen**.
 8. Drücken Sie ESC, klicken oder tippen Sie im Menü **Datei** auf **Collections** (Sammlungen), und vergewissern Sie sich, dass die aktuelle App die Daten enthält, die Sie exportiert haben.
 

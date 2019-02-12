@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42846772"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="data-table-control-in-powerapps"></a>Datentabellen-Steuerelement in PowerApps
 Dient zum Anzeigen eines Satzes von Daten im Tabellenformat.
@@ -83,8 +84,8 @@ Das **Datentabellen**-Steuerelement wurde am 5. Mai 2017 in PowerApps eingeführ
 * [**Y**](properties-size-location.md): der Abstand zwischen dem oberen Rand des **Datentabellen**-Steuerelements und dem oberen Rand seines übergeordneten Containers (oder dem oberen Bildschirmrand, wenn es keinen übergeordneten Container gibt).
 
 ## <a name="related-functions"></a>Verwandte Funktionen
-* [**Filter(Datenquelle, Formel)**](../functions/function-filter-lookup.md)(*Datenquelle*, *Formel*)
-* [**Search(Datenquelle, Suchzeichenfolge, Spalte)**](../functions/function-filter-lookup.md)(*Datenquelle*, *Suchzeichenfolge*, *Spalte*)
+* [**Filter(Datenquelle; Formel)**](../functions/function-filter-lookup.md)(*Datenquelle*, *Formel*)
+* [**Search(Datenquelle; Suchzeichenfolge; Spalte)**](../functions/function-filter-lookup.md)(*Datenquelle*, *Suchzeichenfolge*, *Spalte*)
 
 ## <a name="examples"></a>Beispiele
 ### <a name="basic-usage"></a>Grundlegende Nutzung
@@ -121,7 +122,7 @@ Das **Datentabellen**-Steuerelement wurde am 5. Mai 2017 in PowerApps eingeführ
 
 ### <a name="restyle-the-header-for-the-data-table-control"></a>Neuformatieren der Überschriften des „Datentabellen“-Steuerelements
 1. Klicken oder tippen Sie bei ausgewähltem **Datentabellen**-Steuerelement im rechten Bereich auf die Registerkarte **Erweitert**.
-2. Klicken oder tippen Sie auf das Feld für die Eigenschaft **HeadingFill**, und ändern Sie dann den Wert in **RGBA(62,96,170,1)**.
+2. Klicken oder tippen Sie auf das Feld für die Eigenschaft **HeadingFill**, und ändern Sie dann den Wert in **RGBA(62;96;170;1)**.
 3. Klicken oder tippen Sie auf das Feld für die Eigenschaft **HeadingColor**, und ändern Sie dann den Wert in **White**.
 4. Klicken oder tippen Sie auf das Feld für **HeadingSize**, und ändern Sie dann den Wert in **14**.
    

@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42865461"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="get-started-with-canvas-app-formulas-in-powerapps"></a>Erste Schritte mit Canvas-App-Formeln in PowerApps
 
@@ -69,11 +70,11 @@ In Excel können Sie eine bestimmte Dateneinheit eingeben, z.B. die Zahl **42** 
    
     Die Bezeichnung gibt den neuen Wert wieder, während Sie ihn eingeben.  Möglicherweise wird auf dem Screen gelbe Ausrufezeichen angezeigt, während Sie etwas eingeben. Diese Symbole weisen auf Fehler hin, verschwinden allerdings, sobald Sie einen gültigen Wert eingegeben haben. Eine Zeichenfolge, die nicht in doppelten Anführungszeichen eingeschlossen ist, ist z.B. kein gültiger Wert.
    
-    In Excel können Sie eine Zahl wie **42** anzeigen, indem Sie sie in eine Zelle eingeben oder indem Sie eine Formel verwenden, die zu dieser Zahl auflöst, wie z.B. **=SUM(30, 12)**. In PowerApps erreichen Sie denselben Effekt, indem Sie die Eigenschaft **Text** eines Steuerelements, z.B. einer Bezeichnung, auf **42** oder **Sum(30, 12)** festlegen. Die Zelle und die Bezeichnung zeigen daraufhin immer diese Zahl an, unabhängig von jeglichen Änderungen am Arbeitsblatt oder an der App.
+    In Excel können Sie eine Zahl wie **42** anzeigen, indem Sie sie in eine Zelle eingeben oder indem Sie eine Formel verwenden, die zu dieser Zahl auflöst, wie z.B. **=SUM(30; 12)**. In PowerApps erreichen Sie denselben Effekt, indem Sie die Eigenschaft **Text** eines Steuerelements, z.B. einer Bezeichnung, auf **42** oder **Sum(30; 12)** festlegen. Die Zelle und die Bezeichnung zeigen daraufhin immer diese Zahl an, unabhängig von jeglichen Änderungen am Arbeitsblatt oder an der App.
    
     > [!NOTE]
    > In PowerApps werden Formeln weder ein Gleichheitszeichen noch ein Pluszeichen vorangestellt, wie es z.B. in Excel gebräuchlich ist. Die Bearbeitungsleiste behandelt standardmäßig jede Eingabe wie eine Formel. Formeln werden ebenso wenig in doppelte Anführungszeichen (") gesetzt, die Sie zuvor zum Angeben einer Textzeichenfolge verwendet haben.
-5. Ersetzen Sie in der **[Text](controls/properties-core.md)**-Eigenschaft der Bezeichnung die Zeichenfolge **"Hello World"** durch **Sum(1, 2, 3)**.
+5. Ersetzen Sie in der **[Text](controls/properties-core.md)**-Eigenschaft der Bezeichnung die Zeichenfolge **"Hello World"** durch **Sum(1; 2; 3)**.
    
     ![Die Eingabe der partiellen Funktion „Sum(1, 2, 3“ ohne eine schließende Klammer gibt Fehler zurück.](./media/working-with-formulas/label-sum-partial.png)
    
@@ -97,7 +98,7 @@ Unabhängig davon, welche Zahlen Sie in die Texteingabe-Steuerelemente eingeben,
 
 In Excel können Sie eine bedingte Formatierung verwenden, um negative Werte z.B. in Rot anzuzeigen. In PowerApps verwenden Sie eine Formel, die die **[If](functions/function-if.md)**-Funktion enthält, welche sich ganz ähnlich verhält wie in Excel.
 
-1. Legen Sie die **[Color](controls/properties-color-border.md)**-Eigenschaft des Textfelds auf diese Formel fest:<br>**If( Value(TextBox1.Text) < 0, Red, Black )**
+1. Legen Sie die **[Color](controls/properties-color-border.md)**-Eigenschaft des Textfelds auf diese Formel fest:<br>**If( Value(TextBox1.Text) < 0; Red; Black )**
    
     > [!NOTE]
    > Geben Sie in einer Formel die Eigenschaft eines Steuerelements an, indem Sie den Namen des Steuerelements gefolgt von einem Punkt und dem Namen der Eigenschaft angeben. Geben Sie z.B. die **[Text](controls/properties-core.md)**-Eigenschaft von **TextBox1** an, indem Sie **TextBox1.Text** eingeben.
@@ -123,7 +124,7 @@ Sie können Ihre App mit Formeln konfigurieren, damit Benutzer die Darstellung o
     Sie können die Eigenschaft **Max** angeben, indem Sie sie in der Registerkarte **Content** oder in der Eigenschaftenliste auswählen:
    
     ![Ändern des maximalen Werts für jeden einzelnen Schieberegler](./media/working-with-formulas/three-sliders-max.png)
-4. Wählen Sie den Screen aus, indem Sie neben die Steuerelemente klicken, und legen Sie Eigenschaft **[Fill](controls/properties-color-border.md)** (Füllen) des Screens auf folgende Formel fest:<br>**RGBA( Slider1.Value, Slider2.Value, Slider3.Value, 1 )**
+4. Wählen Sie den Screen aus, indem Sie neben die Steuerelemente klicken, und legen Sie Eigenschaft **[Fill](controls/properties-color-border.md)** (Füllen) des Screens auf folgende Formel fest:<br>**RGBA( Slider1.Value; Slider2.Value; Slider3.Value; 1 )**
    
     Wie bereits beschrieben können Sie mithilfe von **.** auf die Eigenschaften von Steuerelementen zugreifen Operator  **Slider1.Value** bezieht sich auf die **[Value](controls/properties-core.md)**-Eigenschaft (Wert) des Schiebereglers, die angibt, wo der Benutzer den Schieberegler hinsichtlich den **Min**- und **Max**-Werten platziert hat. Jedes Steuerelement wird beim Eingeben sowohl auf dem Screen als auch in der Bearbeitungsleiste farblich hervorgehoben:
    

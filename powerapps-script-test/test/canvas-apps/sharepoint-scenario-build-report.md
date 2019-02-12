@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42828775"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="create-a-power-bi-report-to-analyze-projects"></a>Erstellen eines Power BI-Berichts zum Analysieren von Projekten
 > [!NOTE]
@@ -185,7 +186,7 @@ Bei der Übernahme der Listen in Power BI Desktop wurde eine Beziehung zwischen 
 1. Klicken oder tippen Sie in der Tabelle mit Datumsangaben auf **Neue Spalte**.
    
     ![Neue Spalte](./media/sharepoint-scenario-build-report/05-02-00-modeling-column.png)
-2. Geben Sie in der Bearbeitungsleiste die folgende Formel ein: **IsWeekDay = SWITCH(WEEKDAY(Dates[Date]), 1,0,7,0,1)**.
+2. Geben Sie in der Bearbeitungsleiste die folgende Formel ein: **IsWeekDay = SWITCH(WEEKDAY(Dates[Date]); 1;0;7;0;1)**.
    
     Durch diese Formel wird bestimmt, ob es sich bei einem Datum in der Spalte **Date** um einen Werktag handelt. Wenn es sich bei dem Datum um einen Werktag handelt, erhält die Spalte **IsWeekDay** den Wert 1, andernfalls wird der Spalte der Wert 0 zugewiesen.
 3. Drücken Sie die EINGABETASTE, um der Tabelle **Dates** die Spalte **IsWeekDay** hinzuzufügen.

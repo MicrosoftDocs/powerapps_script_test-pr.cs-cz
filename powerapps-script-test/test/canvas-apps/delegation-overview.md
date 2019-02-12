@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42829749"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="understand-delegation-in-a-canvas-app"></a>Grundlagen der Delegierung in einer Canvas-App
 PowerApps enthält zahlreiche leistungsstarke Funktionen zum Filtern, Sortieren und Strukturieren von Tabellen mit Daten in einer Canvas-App, z.B. **[Filter](functions/function-filter-lookup.md)**, **[Sort](functions/function-sort.md)** und **[AddColumns](functions/function-table-shaping.md)**. Mit diesen Funktionen können Sie für Ihre Benutzer den genauen Zugriff auf die benötigten Informationen bereitstellen. Für Leser mit Datenbankkenntnissen: Die Verwendung dieser Funktionen entspricht dem Schreiben einer Datenbankabfrage.
@@ -60,7 +61,7 @@ In den Funktionen **Filter** und **LookUp** können Sie für Spalten der Tabelle
 * **[StartsWith](functions/function-startswith.md)**
 * Konstante Werte, die in allen Datensätzen gleich sind, z.B. Steuerelementeigenschaften sowie [globale und Kontextvariablen](working-with-variables.md).
 
-Sie können auch Teile Ihrer Formel verwenden, die zu einem konstanten Wert für alle Datensätze ausgewertet werden. Beispielsweise ist **Left( Language(), 2 )** nicht von Spalten des Datensatzes abhängig und gibt daher für alle Datensätze den gleichen Wert zurück. Es ist also praktisch eine Konstante. Die Verwendung von Kontextvariablen, Sammlungen und Signalen ist ggf. nicht konstant und verhindert daher, dass die Funktionen **Filter** und **LookUp** delegiert werden können.  
+Sie können auch Teile Ihrer Formel verwenden, die zu einem konstanten Wert für alle Datensätze ausgewertet werden. Beispielsweise ist **Left( Language(); 2 )** nicht von Spalten des Datensatzes abhängig und gibt daher für alle Datensätze den gleichen Wert zurück. Es ist also praktisch eine Konstante. Die Verwendung von Kontextvariablen, Sammlungen und Signalen ist ggf. nicht konstant und verhindert daher, dass die Funktionen **Filter** und **LookUp** delegiert werden können.  
 
 In der obigen Liste werden die folgenden wichtigen Elemente nicht aufgeführt:
 
@@ -98,7 +99,7 @@ Für alle anderen Funktionen einschließlich der Folgenden wird die Delegierung 
 
 Ein häufiges Muster ist die Verwendung von **AddColumns** und **LookUp** zum Zusammenführen von Informationen aus einer Tabelle in eine andere. In der Datenbanksprache wird dies meist als „Join“ (Verknüpfung“) bezeichnet.  Beispiel:
 
-**AddColumns( Products, "Supplier Name", LookUp( Suppliers, Suppliers.ID = Product.SupplierID ).Name )**
+**AddColumns( Products; "Supplier Name"; LookUp( Suppliers; Suppliers.ID = Product.SupplierID ).Name )**
 
 Bei **Products** und **Suppliers** kann es sich zwar ggf. um delegierbare Datenquellen handeln, und **LookUp** ist eine delegierbare Funktion, aber die Funktion **AddColumns** ist nicht delegierbar.  Das Ergebnis der gesamten Formel ist auf den ersten Teil der Datenquelle **Products** beschränkt.  
 

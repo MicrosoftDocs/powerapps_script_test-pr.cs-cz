@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/29/2018
 ms.locfileid: "43164585"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="guid-function-in-powerapps"></a>Funktion „GUID“ in PowerApps
 Konvertiert eine GUID-Zeichenfolge ([Globally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier), global eindeutiger Bezeichner) in einen GUID-Wert oder erstellt einen neuen GUID-Wert.
@@ -74,7 +75,7 @@ Sie können die GUID-Zeichenfolge auch ohne Bindestriche angeben. Diese Formel g
 
 Um in diesem Kontext das Feld **Status** eines neuen Datenbankdatensatzes auf einen bekannten Wert festzulegen, verwenden Sie Folgendes:
 
-* **Patch( Products, Default( Products ), { Status: GUID( "F9168C5E-CEB2-4faa-B6BF-329BF39FA1E4" ) } )**
+* **Patch( Products; Default( Products ); { Status: GUID( "F9168C5E-CEB2-4faa-B6BF-329BF39FA1E4" ) } )**
 
 Sie werden die GUIDs vermutlich für Ihre Benutzer nicht sichtbar machen, aber GUIDs können Ihnen beim Debuggen Ihrer App helfen. Um den Wert des **Status**-Felds in dem Datensatz anzuzeigen, den Sie im vorherigen Beispiel erstellt haben, legen Sie die **Text**-Eigenschaft eines **Label**-Steuerelements auf diese Formel fest:
 
@@ -86,7 +87,7 @@ Das **Label**-Steuerelement zeigt **f9168c5e-ceb2-4faa-b6bf-329bf39fa1e4** an.
 
 1. Legen Sie die Eigenschaft **[OnSelect](../controls/properties-core.md)** eines **[Button](../controls/control-button.md)**-Steuerelements auf die folgende Formel fest:
 
-    **ClearCollect( NewGUIDs, ForAll( [ 1, 2, 3, 4, 5 ], GUID() ) )**
+    **ClearCollect( NewGUIDs; ForAll( [ 1; 2; 3; 4; 5 ]; GUID() ) )**
 
     Diese Formel erstellt eine Tabelle mit einer Spalte, die fünfmal durchlaufen wird. Das Ergebnis sind fünf GUIDs.
 
@@ -104,4 +105,4 @@ Das **Label**-Steuerelement zeigt **f9168c5e-ceb2-4faa-b6bf-329bf39fa1e4** an.
 
 Um eine einzelne GUID anstelle einer Tabelle zu generieren, verwenden Sie diese Formel:
 
-**Set( NewGUID, GUID() )**
+**Set( NewGUID; GUID() )**

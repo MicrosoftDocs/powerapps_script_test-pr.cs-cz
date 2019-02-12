@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 11/23/2018
 ms.locfileid: "51333994"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="create-an-canvas-app-from-scratch-based-on-excel-data"></a>Erstellen einer Canvas-App anhand von Excel-Daten
 
@@ -117,7 +118,7 @@ Damit Sie die Schritte in diesem Tutorial genau ausführen können, erstellen Si
 
 9. Ändern Sie den Wert der Eigenschaft **Items**, indem Sie diese Formel kopieren und in die Bearbeitungsleiste einfügen:
 
-    **SortByColumns(Search(Schedule, TextSearchBox1.Text, "Volunteer"), "Volunteer", If(SortDescending1, SortOrder.Descending, SortOrder.Ascending))**
+    **SortByColumns(Search(Schedule; TextSearchBox1.Text; "Volunteer"); "Volunteer"; If(SortDescending1; SortOrder.Descending; SortOrder.Ascending))**
 
     Der Katalog zeigt Daten in alphabetischer Reihenfolge nach den Namen der Freiwilligen an.
 
@@ -187,7 +188,7 @@ Damit Sie die Schritte in diesem Tutorial genau ausführen können, erstellen Si
 
     ![Hinzufügen eines Datensatzes](./media/get-started-create-from-blank/add-record.png)
 
-1. Legen Sie die Eigenschaft **OnSelect** für dieses Symbol auf die folgende Formel fest:<br>**NewForm(EditForm1);Navigate(ChangeScreen,ScreenTransition.None)**
+1. Legen Sie die Eigenschaft **OnSelect** für dieses Symbol auf die folgende Formel fest:<br>**NewForm(EditForm1);;Navigate(ChangeScreen;ScreenTransition.None)**
 
     Wenn der Benutzer dieses Symbol auswählt, wird der **ChangeScreen** angezeigt, wobei jedes Feld leer ist, damit der Benutzer einen Datensatz einfacher erstellen kann.
 
@@ -195,7 +196,7 @@ Damit Sie die Schritte in diesem Tutorial genau ausführen können, erstellen Si
 
     ![Pfeil auswählen](./media/get-started-create-from-blank/select-arrow.png)
 
-1. Legen Sie die Eigenschaft **OnSelect** für den Pfeil auf die folgende Formel fest:<br>**EditForm(EditForm1); Navigate(ChangeScreen, ScreenTransition.None)**
+1. Legen Sie die Eigenschaft **OnSelect** für den Pfeil auf die folgende Formel fest:<br>**EditForm(EditForm1);; Navigate(ChangeScreen; ScreenTransition.None)**
 
     Wenn der Benutzer dieses Symbol auswählt, wird in **ChangeScreen** jedes Feld mit den Daten für den ausgewählten Datensatz angezeigt, sodass der Benutzer den Datensatz leichter bearbeiten oder löschen kann.
 
@@ -204,7 +205,7 @@ Damit Sie die Schritte in diesem Tutorial genau ausführen können, erstellen Si
 
     ![Symbol „Abbrechen“](./media/get-started-create-from-blank/cancel-icon.png)
 
-1. Legen Sie die Eigenschaft **OnSelect** für dieses Symbol auf die folgende Formel fest:<br>**ResetForm(EditForm1);Navigate(ViewScreen, ScreenTransition.None)**
+1. Legen Sie die Eigenschaft **OnSelect** für dieses Symbol auf die folgende Formel fest:<br>**ResetForm(EditForm1);;Navigate(ViewScreen; ScreenTransition.None)**
 
     Wenn der Benutzer dieses Symbol auswählt, werden alle Änderungen verworfen, die er in diesem Bildschirm vorgenommen hat, und der Anzeigebildschirm wird geöffnet.
 
@@ -212,7 +213,7 @@ Damit Sie die Schritte in diesem Tutorial genau ausführen können, erstellen Si
 
     ![Häkchensymbol](./media/get-started-create-from-blank/checkmark-icon.png)
 
-1. Legen Sie die Eigenschaft **OnSelect** für das Häkchen auf die folgende Formel fest:<br>**SubmitForm(EditForm1); Navigate(ViewScreen, ScreenTransition.None)**
+1. Legen Sie die Eigenschaft **OnSelect** für das Häkchen auf die folgende Formel fest:<br>**SubmitForm(EditForm1);; Navigate(ViewScreen; ScreenTransition.None)**
 
     Wenn der Benutzer dieses Symbol auswählt, werden alle Änderungen gespeichert, die er in diesem Bildschirm vorgenommen hat, und der Anzeigebildschirm wird geöffnet.
 
@@ -222,7 +223,7 @@ Damit Sie die Schritte in diesem Tutorial genau ausführen können, erstellen Si
 
     ![Papierkorbsymbol](./media/get-started-create-from-blank/trash-icon.png)
 
-1. Legen Sie die Eigenschaft **OnSelect** für das Papierkorbsymbol auf die folgende Formel fest:<br>**Remove(Schedule, BrowseGallery1.Selected); Navigate(ViewScreen, ScreenTransition.None)**
+1. Legen Sie die Eigenschaft **OnSelect** für das Papierkorbsymbol auf die folgende Formel fest:<br>**Remove(Schedule; BrowseGallery1.Selected);; Navigate(ViewScreen; ScreenTransition.None)**
 
     Wenn der Benutzer dieses Symbol auswählt, wird der ausgewählte Datensatz aus der Datenquelle gelöscht, und der Anzeigebildschirm wird geöffnet.
 

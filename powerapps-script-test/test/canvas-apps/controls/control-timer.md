@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 09/12/2018
 ms.locfileid: "44499520"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="timer-control-in-powerapps"></a>Timer-Steuerelement in PowerApps
 Ein Steuerelement, das bestimmen kann, wie Ihre App reagiert, wenn eine gewisse Zeit verstrichen ist.
@@ -123,7 +124,7 @@ Beachten Sie, dass Sie die App im Vorschaumodus ausführen müssen, damit der Ti
 2. Legen Sie die Eigenschaft **Duration** für den Timer auf **10000** und seine Eigenschaften **Repeat** und **Autostart** auf **TRUE** fest.
 3. (optional) Erhöhen Sie die Lesbarkeit des Timers durch Festlegen seiner Eigenschaft **[Height](properties-size-location.md)** auf **160**, seiner Eigenschaft **[Width](properties-size-location.md)** auf **600**, und seiner Eigenschaft **[Size](properties-text.md)** auf **60**.
 4. Fügen Sie eine Bezeichnung hinzu, und legen Sie deren Eigenschaft **[Text](properties-core.md)** auf diese Funktion fest:
-   <br>**"Anzahl verbleibender Sekunden: " & RoundUp(10-Countdown.Value/1000, 0)**
+   <br>**"Anzahl verbleibender Sekunden: " & RoundUp(10-Countdown.Value/1000; 0)**
 
     Benötigen Sie weitere Informationen zur **[If](../functions/function-round.md)**-Funktion oder [anderen Funktionen](../formula-reference.md)?
 
@@ -136,7 +137,7 @@ Beachten Sie, dass Sie die App im Vorschaumodus ausführen müssen, damit der Ti
 2. Legen Sie für diese Eigenschaften des Timers Folgendes fest: **Dauer** = **5000**, **Wiederholen** = **TRUE** und **[Text](properties-core.md)** = **Toggle animation** (Umschalter-Animation).
 3. (optional) Erhöhen Sie die Lesbarkeit des Timers durch Festlegen seiner Eigenschaft **[Height](properties-size-location.md)** auf **160**, seiner Eigenschaft **[Width](properties-size-location.md)** auf **600**, und seiner Eigenschaft **[Size](properties-text.md)** auf **60**.
 4. Fügen Sie eine Bezeichnung hinzu, und legen Sie deren Eigenschaft **[Text](properties-core.md)** auf **Welcome!** fest und legen Sie dessen Eigenschaft **[Color](properties-color-border.md)** auf diese Formel fest:
-   <br>**ColorFade(Color.BlueViolet, FadeIn.Value/5000)**
+   <br>**ColorFade(Color.BlueViolet; FadeIn.Value/5000)**
 
     Benötigen Sie weitere Informationen zur **[ColorFade](../functions/function-colors.md)**-Funktion oder [anderen Funktionen](../formula-reference.md)?
 

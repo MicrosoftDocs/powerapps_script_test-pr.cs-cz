@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 11/22/2018
 ms.locfileid: "51333959"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="create-a-canvas-app-from-scratch-using-common-data-service-for-apps"></a>Erstellen einer Canvas-App von Grund auf mit Common Data Service für Apps
 
@@ -59,7 +60,7 @@ Wenn Sie eine App in Common Data Service erstellen, müssen Sie keine Verbindung
 
 1. Klicken oder tippen Sie in der Navigationsleiste auf der linken Seite auf **TemplateGalleryList1**, und legen Sie dann den Wert für die Eigenschaft **Items** auf die folgende Formel fest:
 
-    `SortByColumns(Search(Accounts, TextSearchBox1.Text, "name"), "name", If(SortDescending1, SortOrder.Descending, SortOrder.Ascending))`
+    `SortByColumns(Search(Accounts; TextSearchBox1.Text; "name"); "name"; If(SortDescending1; SortOrder.Descending; SortOrder.Ascending))`
 
     Diese Formel gibt Folgendes an:
 
@@ -118,25 +119,25 @@ Wenn Sie eine App in Common Data Service erstellen, müssen Sie keine Verbindung
 
 1. Klicken oder tippen Sie auf das Pluszeichen und legen Sie die **OnSelect**-Eigenschaft auf die folgende Formel fest:
 
-    `NewForm(EditForm1); Navigate(FormScreen, ScreenTransition.None)`
+    `NewForm(EditForm1);; Navigate(FormScreen; ScreenTransition.None)`
 
     ![Symbol „Hinzufügen“](./media/data-platform-create-app-scratch/plus-icon.png)
 
 1. Klicken oder tippen Sie auf den ersten Pfeil nach rechts, und legen Sie die **OnSelect**-Eigenschaft auf die folgende Formel fest:
 
-    `EditForm(EditForm1); Navigate(FormScreen, ScreenTransition.None)`
+    `EditForm(EditForm1);; Navigate(FormScreen; ScreenTransition.None)`
 
     ![Symbol „Weiter“](./media/data-platform-create-app-scratch/next-icon.png)
 
 1. Klicken oder tippen Sie unter **FormScreen** auf das Symbol „Abbrechen“, und legen Sie die **OnSelect**-Eigenschaft auf die folgende Formel fest:
 
-    `ResetForm(EditForm1);Navigate(BrowseScreen, ScreenTransition.None)`
+    `ResetForm(EditForm1);;Navigate(BrowseScreen; ScreenTransition.None)`
 
     ![Symbol „Abbrechen“](./media/data-platform-create-app-scratch/cancel-icon.png)
 
 1. Klicken oder tippen Sie auf das Häkchensymbol, und legen Sie die **OnSelect**-Eigenschaft auf die folgende Formel fest:
 
-    `SubmitForm(EditForm1); Navigate(BrowseScreen, ScreenTransition.None)`
+    `SubmitForm(EditForm1);; Navigate(BrowseScreen; ScreenTransition.None)`
 
     ![Häkchensymbol](./media/data-platform-create-app-scratch/checkmark-icon.png)
 
@@ -144,7 +145,7 @@ Wenn Sie eine App in Common Data Service erstellen, müssen Sie keine Verbindung
 
 1. Legen Sie für das **Papierkorbsymbol** die **Color**-Eigenschaft auf **Weiß** und die **OnSelect**-Eigenschaft auf die folgende Formel fest:
 
-    `Remove(Accounts, BrowseGallery.Selected); Navigate(BrowseScreen, ScreenTransition.None)`
+    `Remove(Accounts; BrowseGallery.Selected);; Navigate(BrowseScreen; ScreenTransition.None)`
 
     ![Papierkorbsymbol](./media/data-platform-create-app-scratch/trash-icon.png)
 

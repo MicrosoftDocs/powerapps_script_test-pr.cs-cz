@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42865484"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="patch-function-in-powerapps"></a>Funktion „Patch“ in PowerApps
 Ändert oder erstellt einen oder mehrere [Datensätze](../working-with-tables.md#records) in einer [Datenquelle](../working-with-data-sources.md) oder verbindet Datensätze außerhalb einer Datenquelle.
@@ -30,15 +31,15 @@ In weniger komplexen Situationen können Sie das Steuerelement **Bearbeitungsfor
 ## <a name="overview"></a>Übersicht
 Verwenden Sie die **Patch**-Funktion, um einen oder mehrere Datensätze für die Datenquelle zu ändern.  Die Werte bestimmter [Felder](../working-with-tables.md#elements-of-a-table) lassen sich ohne Auswirkungen auf andere Eigenschaften ändern. Beispielsweise ändert diese Formel die Telefonnummer für einen Kunden mit dem Namen Contoso:
 
-**Patch( Customers, First( Filter( Customers, Name = "Contoso" ) ), { Phone: “1-212-555-1234” } )**
+**Patch( Customers; First( Filter( Customers; Name = "Contoso" ) ); { Phone: “1-212-555-1234” } )**
 
 Verwenden Sie die Funktion **Patch** mit der **[Default](function-defaults.md)**-Funktion, um Einträge zu erstellen. Verwenden Sie dieses Verhalten zum Erstellen eines [kombinierten Bildschirms](../working-with-data-sources.md) für die Erstellung und Bearbeitung von Datensätzen. Beispielsweise erstellt diese Formel einen Datensatz für einen Kunden mit dem Namen Contoso:
 
-**Patch( Customers, Defaults( Customer ), { Name: “Contoso” } )**
+**Patch( Customers; Defaults( Customer ); { Name: “Contoso” } )**
 
 Auch wenn Sie nicht mit einer Datenquelle arbeiten, können Sie die **Patch**-Funktion zum Zusammenführen von zwei oder mehr Datensätzen nutzen. Diese Formel führt beispielsweise zwei Datensätze zu einem zusammen, der sowohl die Telefonnummer als auch den Standort von Contoso angibt:
 
-**Patch( { Name: "Contoso", Phone: “1-212-555-1234” }, { Name: "Contoso", Location: “Midtown”  } )**
+**Patch( { Name: "Contoso"; Phone: “1-212-555-1234” }; { Name: "Contoso"; Location: “Midtown”  } )**
 
 ## <a name="description"></a>Beschreibung
 ### <a name="modify-or-create-a-record-in-a-data-source"></a>Ändern oder Erstellen eines Datensatzes in einer Datenquelle
@@ -69,21 +70,21 @@ Geben Sie zwei oder mehr Datensätze an, die Sie zusammenführen möchten. Daten
 
 ## <a name="syntax"></a>Syntax
 #### <a name="modify-or-create-a-record-in-a-data-source"></a>Ändern oder Erstellen eines Datensatzes in einer Datenquelle
-**Patch**( *DataSource*, *BaseRecord*, *ChangeRecord1* [, *ChangeRecord2*, … ])
+**Patch**( *DataSource*; *BaseRecord*; *ChangeRecord1* [; *ChangeRecord2*; … ])
 
 * *Datenquelle*: Erforderlich. Die Datenquelle, die den zu ändernden Datensatz enthält oder für die Sie einen Datensatz erstellen möchten.
 * *BaseRecord*: erforderlich. Der zu ändernde oder zu erstellende Datensatz.  Wenn der Datensatz aus einer Datenquelle stammt, wird der Datensatz gefunden und geändert. Wenn das Ergebnis der  **[Defaults](function-defaults.md)**-Funktion verwendet wird, wird ein Datensatz erstellt.
 * *ChangeRecord(s)*: erforderlich.  Mindestens ein Datensatz, der Eigenschaften enthält, die für jeden Datensatz im *BaseRecord* geändert werden sollen.  Änderungsdatensätze werden nacheinander vom Anfang bis zum Ende der Argumenteliste verarbeitet, wobei spätere Eigenschaftswerte frühere Versionen überschreiben.
 
 #### <a name="modify-or-create-a-set-of-records-in-a-data-source"></a>Ändern oder Erstellen einer Gruppe von Datensätzen in einer Datenquelle
-**Patch**( *DataSource*, *BaseRecordsTable*, *ChageRecordTable1*, [, *ChangeRecordTable2*, … ] )
+**Patch**( *DataSource*; *BaseRecordsTable*; *ChageRecordTable1*; [; *ChangeRecordTable2*; … ] )
 
 * *Datenquelle*: Erforderlich. Die Datenquelle mit den zu ändernden Datensätzen oder für die Sie Datensätze erstellen möchten.
 * *BaseRecordTable*: erforderlich. Eine Tabelle mit zu ändernden oder zu erstellenden Datensätzen.  Wenn der Datensatz aus einer Datenquelle stammt, wird der Datensatz gefunden und geändert. Wenn das Ergebnis der  **[Defaults](function-defaults.md)**-Funktion verwendet wird, wird ein Datensatz erstellt.
 * *ChangeRecordTable(s)*: erforderlich.  Mindestens eine Tabelle von Datensätzen mit Eigenschaften, die für jeden Datensatz von *BaseRecordTable* geändert werden sollen.  Änderungsdatensätze werden nacheinander vom Anfang bis zum Ende der Argumenteliste verarbeitet, wobei spätere Eigenschaftswerte frühere Versionen überschreiben.
 
 #### <a name="merge-records"></a>Zusammenführen von Datensätzen
-**Patch**( *Record1*, *Record2* [, …] )
+**Patch**( *Record1*; *Record2* [; …] )
 
 * *Datensatz(-sätze)*: erforderlich.  Mindestens zwei Datensätze, die Sie zusammenführen möchten. Datensätze werden nacheinander vom Anfang bis zum Ende der Argumenteliste verarbeitet, wobei spätere Eigenschaftswerte frühere Versionen überschreiben.
 
@@ -95,8 +96,8 @@ In diesen Beispielen ändern oder erstellen Sie einen Datensatz in einer Datenqu
 
 | Formel | Beschreibung | Ergebnis |
 | --- | --- | --- |
-| **Patch(&nbsp;IceCream,<br>First( Filter( IceCream, Flavor = "Chocolate" ) ), {&nbsp;Quantity:&nbsp;400&nbsp;} )** |Ändert einen Datensatz in der **IceCream**-Datenquelle:<ul><li> Die **ID**-Spalte des zu ändernden Datensatzes enthält den Wert **1**. (Der **Chocolate**-Datensatz weist diese ID auf.)</li><li>Der Wert in der **Quantity**-Spalte ändert sich zu **400**. |{&nbsp;ID:&nbsp;1, Flavor:&nbsp;"Chocolate", Quantity:&nbsp;400 }<br><br>Der Eintrag **Chocolate** in der **IceCream**-Datenquelle wurde geändert. |
-| **Patch( IceCream, Defaults(&nbsp;IceCream ), {&nbsp;Flavor:&nbsp;“Strawberry”&nbsp;}&nbsp;)** |Erstellt einen Datensatz in der **IceCream**-Datenquelle:<ul><li>Die **ID**-Spalte enthält den Wert **3**, den die Datenquelle automatisch generiert.</li><li>Die Spalte **Quantity** enthält **0**, was dem Standardwert für diese Spalte in der **IceCream**-Datenquelle entspricht,wie von der **[Defaults](function-defaults.md)**-Funktion angegeben.<li>Die Spalte **Flavor** enthält den Wert **Strawberry**.</li> |{ ID:&nbsp;3, Flavor:&nbsp;“Strawberry”, Quantity:&nbsp;0&nbsp;}<br><br>Der Eintrag **Strawberry** in der **IceCream**-Datenquelle wurde erstellt. |
+| **Patch(&nbsp;IceCream;<br>First( Filter( IceCream; Flavor = "Chocolate" ) ); {&nbsp;Quantity:&nbsp;400&nbsp;} )** |Ändert einen Datensatz in der **IceCream**-Datenquelle:<ul><li> Die **ID**-Spalte des zu ändernden Datensatzes enthält den Wert **1**. (Der **Chocolate**-Datensatz weist diese ID auf.)</li><li>Der Wert in der **Quantity**-Spalte ändert sich zu **400**. |{&nbsp;ID:&nbsp;1, Flavor:&nbsp;"Chocolate", Quantity:&nbsp;400 }<br><br>Der Eintrag **Chocolate** in der **IceCream**-Datenquelle wurde geändert. |
+| **Patch( IceCream; Defaults(&nbsp;IceCream ); {&nbsp;Flavor:&nbsp;“Strawberry”&nbsp;}&nbsp;)** |Erstellt einen Datensatz in der **IceCream**-Datenquelle:<ul><li>Die **ID**-Spalte enthält den Wert **3**, den die Datenquelle automatisch generiert.</li><li>Die Spalte **Quantity** enthält **0**, was dem Standardwert für diese Spalte in der **IceCream**-Datenquelle entspricht,wie von der **[Defaults](function-defaults.md)**-Funktion angegeben.<li>Die Spalte **Flavor** enthält den Wert **Strawberry**.</li> |{ ID:&nbsp;3, Flavor:&nbsp;“Strawberry”, Quantity:&nbsp;0&nbsp;}<br><br>Der Eintrag **Strawberry** in der **IceCream**-Datenquelle wurde erstellt. |
 
 Nachdem die oben genannten Formeln ausgewertet wurden, endet die Datenquelle mit den folgenden Werten:
 
@@ -106,5 +107,5 @@ Nachdem die oben genannten Formeln ausgewertet wurden, endet die Datenquelle mit
 
 | Formel | Beschreibung | Ergebnis |
 | --- | --- | --- |
-| **Patch(&nbsp;{&nbsp;Name:&nbsp;"James",&nbsp;Score:&nbsp;90&nbsp;}, {&nbsp;Name:&nbsp;"Jim",&nbsp;Passed:&nbsp;true&nbsp;} )** |Verbindet zwei Datensätze außerhalb einer Datenquelle:<br><ul><li>Die Werte in der Spalte **Name** jedes Datensatzes stimmen nicht überein. Das Ergebnis enthält den Wert (**Jim**) im Datensatz, der dem Ende der Argumentliste näher ist, anstelle des Werts (**James**) im Datensatz, der näher am Anfang ist.</li><li>Der erste Datensatz enthält eine Spalte (**Score**), die im zweiten Datensatz nicht vorhanden ist. Das Ergebnis enthält diese Spalte mit dem Wert (**90**).</li><li>Der zweite Datensatz enthält eine Spalte (**Passed**), die im ersten Datensatz nicht vorhanden ist. Das Ergebnis enthält diese Spalte mit dem Wert (**TRUE**). |{&nbsp;Name:&nbsp;"Jim", Score:&nbsp;90, Passed:&nbsp;true&nbsp;} |
+| **Patch(&nbsp;{&nbsp;Name:&nbsp;"James";&nbsp;Score:&nbsp;90&nbsp;}; {&nbsp;Name:&nbsp;"Jim";&nbsp;Passed:&nbsp;true&nbsp;} )** |Verbindet zwei Datensätze außerhalb einer Datenquelle:<br><ul><li>Die Werte in der Spalte **Name** jedes Datensatzes stimmen nicht überein. Das Ergebnis enthält den Wert (**Jim**) im Datensatz, der dem Ende der Argumentliste näher ist, anstelle des Werts (**James**) im Datensatz, der näher am Anfang ist.</li><li>Der erste Datensatz enthält eine Spalte (**Score**), die im zweiten Datensatz nicht vorhanden ist. Das Ergebnis enthält diese Spalte mit dem Wert (**90**).</li><li>Der zweite Datensatz enthält eine Spalte (**Passed**), die im ersten Datensatz nicht vorhanden ist. Das Ergebnis enthält diese Spalte mit dem Wert (**TRUE**). |{&nbsp;Name:&nbsp;"Jim", Score:&nbsp;90, Passed:&nbsp;true&nbsp;} |
 

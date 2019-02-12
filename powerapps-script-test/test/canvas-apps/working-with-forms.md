@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42851735"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="understand-canvas-app-forms-in-microsoft-powerapps"></a>Grundlegendes zu Canvas-App-Formularen in Microsoft PowerApps
 
@@ -52,8 +53,8 @@ Dieser Bildschirm bietet folgende Schlüsselformeln:
 | Steuerelement | Unterstütztes Verhalten | Formel |
 | --- | --- | --- |
 | **BrowseGallery1** |Zeigen Sie Datensätzen aus der **Assets**-Datenquelle (verfügbare Objekte) an. |Legen Sie die **[Items](controls/properties-core.md)**-Eigenschaft des Katalogs auf eine Formel fest, die auf der Datenquelle **Bestand** basiert. |
-| **ImageNewItem1** |Zeigen Sie den Bildschirm **Bearbeiten und Erstellen** an, wobei jedes Feld auf einen Standardwert festlegen, sodass der Benutzer einen Datensatz leicht erstellen kann. |Die **[OnSelect](controls/properties-core.md)**-Eigenschaft des Bilds ist auf die folgende Formel festgelegt:<br> **NewForm( EditForm1 );<br>Navigate( EditScreen1, None )** |
-| **NextArrow1** (im Katalog) |Zeigen Sie den Bildschirm **Details** an, um den aktuell ausgewählten Datensatz viele oder alle Felder anzeigen. |Die **[OnSelect](controls/properties-core.md)**-Eigenschaft des Pfeils ist auf die folgende Formel festgelegt:<br>**Navigate( DetailScreen1, None )** |
+| **ImageNewItem1** |Zeigen Sie den Bildschirm **Bearbeiten und Erstellen** an, wobei jedes Feld auf einen Standardwert festlegen, sodass der Benutzer einen Datensatz leicht erstellen kann. |Die **[OnSelect](controls/properties-core.md)**-Eigenschaft des Bilds ist auf die folgende Formel festgelegt:<br> **NewForm( EditForm1 );;<br>Navigate( EditScreen1; None )** |
+| **NextArrow1** (im Katalog) |Zeigen Sie den Bildschirm **Details** an, um den aktuell ausgewählten Datensatz viele oder alle Felder anzeigen. |Die **[OnSelect](controls/properties-core.md)**-Eigenschaft des Pfeils ist auf die folgende Formel festgelegt:<br>**Navigate( DetailScreen1; None )** |
 
 Das primäre Steuerelement auf diesem Bildschirm, **BrowseGallery1**, deckt die meisten der Bildschirmbereiche ab. Der Benutzer kann durch den Katalog scrollen, um einen bestimmten Datensatz zu suchen und weitere Felder anzuzeigen oder um zu aktualisieren.
 
@@ -63,7 +64,7 @@ Legen Sie die **[Items](controls/properties-core.md)**-Eigenschaft einer Katalog
 > In einer generierten App wird **[Items](controls/properties-core.md)** standardmäßig auf eine wesentlich schwierigere Formel festgelegt, damit der Nutzer Daten sortieren und nach Datensätzen suchen kann. Sie erfahren später in diesem Thema, wie Sie die Formel erstellen. Die einfachere Version ist genug für heute.
 
 Anstatt einen Datensatz zum Anzeigen oder Bearbeiten zu suchen, kann der Benutzer einen Datensatz erstellen, indem er auf das Symbol „+“ über dem Katalog klickt. Erzeugen Sie diesen Effekt , indem Sie ein **[Image](controls/control-image.md)**-Steuerelement mit einem „+“ darin hinzufügen und seine Eigenschaft **[OnSelect](controls/properties-core.md)** auf diese Formel festlegen:
-<br>**NewForm( EditForm1 ); Navigate( EditScreen1, None )**
+<br>**NewForm( EditForm1 );; Navigate( EditScreen1; None )**
 
 Mit dieser Formel wird der Bildschirm **Bearbeiten und Erstellen** geöffnet, der ein Steuerelement **[Formular bearbeiten](controls/control-form-detail.md)** namens **EditForm1** enthält. Die Formel ändert dieses Formular auch in den Modus **Neu**, in dem das Formular Standardwerte aus der Datenquelle zeigt, damit der Benutzer einen Datensatz leicht neu erstellen kann.
 
@@ -74,7 +75,7 @@ Um alle Steuerelemente in **BrowseGallery1** zu untersuchen, wählen Sie das Ste
 In diesem Beispiel wird die **[Text](controls/properties-core.md)**-Eigenschaft des Steuerelements auf **ThisItem.AssignedTo** festgelegt, wobei es sich um ein Feld in der Datenquelle **Bestand** handelt. Die **[Text](controls/properties-core.md)**-Eigenschaft der anderen drei **[Label](controls/control-text-box.md)**-Steuerelemente im Katalog sind auf ähnliche Formeln festgelegt, und jedes Steuerelement zeigt ein anderes Feld in der Datenquelle.  
 
 Wählen Sie das Steuerelement **[Symbole](controls/control-shapes-icons.md)** (Pfeil) aus, und überprüfen Sie, ob die **[OnSelect](controls/properties-core.md)**-Eigenschaft auf diese Formel festgelegt wurde:
-<br>**Navigate( DetailScreen1, None )**
+<br>**Navigate( DetailScreen1; None )**
 
 Wenn der Benutzer in **BrowseGallery1** einen Datensatz findet, kann der Benutzer auf den Pfeil für den entsprechenden Datensatz klicken, um weitere Informationen in **DetailScreen1** anzuzeigen. Durch einen Klick auf den Pfeil ändert der Benutzer den Wert der Eigenschaft **Selected** von **BrowseGallery1**. In dieser App bestimmt diese Eigenschaft, welcher Datensatz nicht nur auf dem Bildschirm **DetailScreen1** erscheint, sondern – falls der Benutzer den Datensatz aktualisieren möchte – auch auf dem Bildschirm **Bearbeiten und Erstellen**.
 
@@ -89,8 +90,8 @@ Dieser Bildschirm bietet folgende Schlüsselformeln:
 | **DetailForm1** |Bestimmt, welcher Datensatz angezeigt wird. In einer generierten App wird der Datensatz angezeigt, den der Benutzer im Katalog ausgewählt hat. |Legen Sie die **[Item](controls/control-form-detail.md)**-Eigenschaft dieses Steuerelements auf diesen Wert fest:<br>**BrowseGallery1.Selected** |
 | **[Karten](controls/control-card.md)**-Steuerelemente |In einem Steuerelement **[Formular anzeigen](controls/control-form-detail.md)** wird ein einzelnes Feld in einem Datensatz angezeigt. |Legen Sie die **[DataField](controls/control-card.md)**-Eigenschaft auf den Namen eines Felds in doppelten Anführungszeichen (z.B. **"Name"**) fest. |
 | **ImageBackArrow1** |Wenn der Benutzer dieses Steuerelement auswählt, öffnet sich **BrowseScreen1**. |Legen Sie die **[OnSelect](controls/properties-core.md)**-Eigenschaft auf die folgende Formel fest:<br>**Back()** |
-| **ImageDelete1** |Wenn der Benutzer dieses Steuerelement auswählt, wird ein Datensatz gelöscht. |Legen Sie die **[OnSelect](controls/properties-core.md)**-Eigenschaft auf die folgende Formel fest:<br>**Remove( Assets, BrowseGallery1.Selected )** |
-| **ImageEdit1** |Wenn der Benutzer dieses Steuerelement auswählt, öffnet sich der Bildschirm **Bearbeiten und Erstellen** des aktuellen Datensatzes. |Legen Sie die **[OnSelect](controls/properties-core.md)**-Eigenschaft auf die folgende Formel fest:<br>**Navigate( EditScreen1, None )** |
+| **ImageDelete1** |Wenn der Benutzer dieses Steuerelement auswählt, wird ein Datensatz gelöscht. |Legen Sie die **[OnSelect](controls/properties-core.md)**-Eigenschaft auf die folgende Formel fest:<br>**Remove( Assets; BrowseGallery1.Selected )** |
+| **ImageEdit1** |Wenn der Benutzer dieses Steuerelement auswählt, öffnet sich der Bildschirm **Bearbeiten und Erstellen** des aktuellen Datensatzes. |Legen Sie die **[OnSelect](controls/properties-core.md)**-Eigenschaft auf die folgende Formel fest:<br>**Navigate( EditScreen1; None )** |
 
 Am oberen Bildschirmrand befinden sich drei Bilder außerhalb von **DetailForm1** und fungieren als Schaltflächen, die zwischen den drei Bildschirmen der App orchestriert.
 
@@ -118,7 +119,7 @@ Dieser Bildschirm bietet folgende Schlüsselformeln:
 | **EditForm1** |Zeigt einen Datensatz in der **Assets**-Datenquelle |Legen Sie die **[DataSource](controls/control-form-detail.md)**-Eigenschaft auf **Assets** fest. |
 | **EditForm1** |Bestimmt, welcher Datensatz angezeigt wird. In einer generierten App wird der Datensatz angezeigt, den der Benutzer in **BrowseScreen1** ausgewählt hat. |Legen Sie die **[Item](controls/control-form-detail.md)**-Eigenschaft auf diesen Wert fest:<br>**BrowseGallery1.Selected** |
 | **[Karten](controls/control-card.md)**-Steuerelemente |In einem Steuerelement **[Formular bearbeiten](controls/control-form-detail.md)** werden Steuerelemente bereitgestellt, damit der Benutzer mindestens ein Feld in einem Datensatz bearbeiten kann. |Legen Sie die **[DataField](controls/control-card.md)**-Eigenschaft auf den Namen eines Felds in doppelten Anführungszeichen (z.B. **"Name"**) fest. |
-| **ImageCancel1** |Wenn der Benutzer dieses Steuerelement auswählt, werden alle aktuellen Änderungen verworfen, und es öffnet sich der Bildschirm **Details**. |Legen Sie die **[OnSelect](controls/properties-core.md)**-Eigenschaft auf die folgende Formel fest:<br>**ResetForm( EditForm1 ); Back()** |
+| **ImageCancel1** |Wenn der Benutzer dieses Steuerelement auswählt, werden alle aktuellen Änderungen verworfen, und es öffnet sich der Bildschirm **Details**. |Legen Sie die **[OnSelect](controls/properties-core.md)**-Eigenschaft auf die folgende Formel fest:<br>**ResetForm( EditForm1 );; Back()** |
 | **ImageAccept1** |Wenn der Benutzer dieses Steuerelement auswählt, werden Änderungen an die Datenquelle gesendet. |Legen Sie die **[OnSelect](controls/properties-core.md)**-Eigenschaft auf die folgende Formel fest:<br>**SubmitForm( EditForm1 )** |
 | **EditForm1** |Wenn Änderungen akzeptiert werden, gelangen Sie zurück zum vorherigen Bildschirm. |Legen Sie die **[OnSuccess](controls/control-form-detail.md)**-Eigenschaft auf die folgende Formel fest:<br>**Back()** |
 | **EditForm1** |Wenn die Änderungen nicht akzeptiert werden, bleiben Sie auf dem aktuellen Bildschirm, damit der Benutzer Sie jegliche Probleme beseitigen und versuchen kann, die Änderungen erneut zu senden. |Lassen Sie die **[OnFailure](controls/control-form-detail.md)**-Eigenschaft leer. |
@@ -223,7 +224,7 @@ Kehren wir jetzt zum **[Katalog](controls/control-gallery.md)**-Steuerelement zu
 1. Wechseln Sie zum ersten Bildschirm, auf dem sich das **[Katalog](controls/control-gallery.md)**-Steuerelement befindet, und wählen Sie den Pfeil im ersten Element im Katalog aus.
 
 2. Legen Sie die **[OnSelect](controls/properties-core.md)**-Eigenschaft des Symbols auf die folgende Formel fest:
-   <br>**Navigate( Screen2, None )**
+   <br>**Navigate( Screen2; None )**
    
     ![„Formular anzeigen“ für die Eiscreme-Datenquelle mit der Schaltfläche „Zurück“](./media/working-with-forms/gallery-icecream-nav-new.png)
 
@@ -259,7 +260,7 @@ Das **[Formular bearbeiten](controls/control-form-detail.md)**-Steuerelement bie
 
 So fügen Sie Navigationselemente zu und von diesem Bildschirm hinzu:
 
-1. Fügen Sie ein weiteres **[Schaltflächen](controls/control-button.md)**-Steuerelement hinzu, legen Sie dessen **[Text](controls/properties-core.md)**-Eigenschaft auf **Cancel** (Abbrechen) und dessen **[OnSelect](controls/properties-core.md)**-Eigenschaft auf diese Formel fest: <br>**ResetForm( Form1 ); Back()**
+1. Fügen Sie ein weiteres **[Schaltflächen](controls/control-button.md)**-Steuerelement hinzu, legen Sie dessen **[Text](controls/properties-core.md)**-Eigenschaft auf **Cancel** (Abbrechen) und dessen **[OnSelect](controls/properties-core.md)**-Eigenschaft auf diese Formel fest: <br>**ResetForm( Form1 );; Back()**
    
     Diese Formel verwirft alle ungespeicherten Änderungen und öffnet den vorherigen Bildschirm.
    
@@ -269,7 +270,7 @@ So fügen Sie Navigationselemente zu und von diesem Bildschirm hinzu:
     Wenn die Updates erfolgreich gespeichert wurden, wird der vorherige Bildschirm (in diesem Fall der Bildschirm „Details“) automatisch geöffnet.
    
     ![„Formular bearbeiten“ mit hinzugefügter „OnSuccess“-Regel](./media/working-with-forms/edit-icecream-onsuccess.png)
-3. Fügen Sie auf dem **Display**-Bildschirm (Anzeigen) eine Schaltfläche hinzu, legen Sie deren **[Text](controls/properties-core.md)**-Eigenschaft auf **Edit** (Bearbeiten) und dessen **[OnSelect](controls/properties-core.md)**-Eigenschaft auf diese Formel fest:<br> **Navigate( Screen3, None )**
+3. Fügen Sie auf dem **Display**-Bildschirm (Anzeigen) eine Schaltfläche hinzu, legen Sie deren **[Text](controls/properties-core.md)**-Eigenschaft auf **Edit** (Bearbeiten) und dessen **[OnSelect](controls/properties-core.md)**-Eigenschaft auf diese Formel fest:<br> **Navigate( Screen3; None )**
    
     ![„Formular anzeigen“ mit hinzugefügter Schaltfläche „Bearbeiten“](./media/working-with-forms/viewform-icecream-edit.png)
 
@@ -288,7 +289,7 @@ Fügen Sie auf dem ersten Bildschirm eine **neue** Schaltfläche hinzu:
 
 1. Fügen Sie auf dem Katalog-Bildschirm ein **[Schaltflächen](controls/control-button.md)**-Steuerelement hinzu.
 2. Legen Sie die **[Text](controls/properties-core.md)**-Eigenschaft der Schaltfläche auf **New** (Neu) und ihre **[OnSelect](controls/properties-core.md)**-Eigenschaft auf diese Formel fest:<br>
-   **NewForm( Form1 ); Navigate( Screen3, None )**
+   **NewForm( Form1 );; Navigate( Screen3; None )**
    
     Mit dieser Formel wechselt das **[Formular bearbeiten](controls/control-form-detail.md)**-Steuerelement auf **Screen3** in den Modus **New** und öffnet den Bildschirm, damit der Benutzer ihn auffüllen kann.
 
@@ -299,7 +300,7 @@ Wenn sich der Bildschirm „Bearbeiten und Erstellen“ öffnet, ist das Formula
 ## <a name="delete-a-record"></a>Löschen eines Datensatzes
 1. Fügen Sie auf dem **Display**-Bildschirm (Anzeigen) eine Schaltfläche hinzu, und legen Sie deren **[Text](controls/properties-core.md)**-Eigenschaft auf **Delete** (Löschen) fest.
 2. Legen Sie die **[OnSelect](controls/properties-core.md)**-Eigenschaft auf die folgende Formel fest:
-   <br>**Remove( 'Ice Cream', Gallery1.Selected ); Back()**
+   <br>**Remove( 'Ice Cream'; Gallery1.Selected );; Back()**
    
     ![„Formular anzeigen“ mit hinzugefügter Schaltfläche „Bearbeiten“](./media/working-with-forms/viewform-icecream-remove.png)
 

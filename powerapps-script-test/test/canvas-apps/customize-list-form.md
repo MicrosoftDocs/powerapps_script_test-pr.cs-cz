@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 10/02/2018
 ms.locfileid: "48025669"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="customize-a-sharepoint-list-form-by-using-powerapps"></a>Anpassen eines SharePoint-Listenformulars mit PowerApps
 
@@ -75,7 +76,7 @@ Sie können die Felder **Price**, **Availability** und **Colors** so konfigurier
 
 1. Geben Sie in der Formelleiste die folgende Formel ein (oder fügen Sie sie ein):
 
-    **If(DataCardValue3.Value = true, true)**
+    **If(DataCardValue3.Value = true; true)**
 
     ![Wert der visible-Eigenschaft festlegen](./media/customize-list-form/build-formula.png)
 

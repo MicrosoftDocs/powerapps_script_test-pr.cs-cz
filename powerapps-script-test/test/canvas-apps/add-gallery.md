@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42835096"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="show-a-list-of-items-in-powerapps"></a>Anzeigen einer Liste mit Elementen in PowerApps
 
@@ -106,7 +107,7 @@ Die **[Items](controls/properties-core.md)**-Eigenschaft eines **Katalog**-Steue
 
 2. Legen Sie auf der Registerkarte **Erweitert** die **[Items](controls/properties-core.md)**-Eigenschaft des **Katalog**-Steuerelements auf diese Formel fest:
 
-    **If(IsBlank(TextSearchBox1.Text), FlooringEstimates, Filter(FlooringEstimates, TextSearchBox1.Text in Text(Name)))**
+    **If(IsBlank(TextSearchBox1.Text); FlooringEstimates; Filter(FlooringEstimates; TextSearchBox1.Text in Text(Name)))**
 
     Weitere Informationen zu den Funktionen in dieser Formel finden Sie unter [formula reference (Formelreferenz)](formula-reference.md).
 
@@ -121,7 +122,7 @@ Die **[Items](controls/properties-core.md)**-Eigenschaft eines **Katalog**-Steue
 
 1. Legen Sie die **[Items](controls/properties-core.md)**-Eigenschaft des **Katalog**-Steuerelements auf diese Formel fest:
 
-    **Sort(If(IsBlank(TextSearchBox1.Text), FlooringEstimates, Filter(FlooringEstimates, TextSearchBox1.Text in Text(Name))), Name, If(SortDescending1, SortOrder.Descending, SortOrder.Ascending))**
+    **Sort(If(IsBlank(TextSearchBox1.Text); FlooringEstimates; Filter(FlooringEstimates; TextSearchBox1.Text in Text(Name))); Name; If(SortDescending1; SortOrder.Descending; SortOrder.Ascending))**
 
 2. Wählen Sie das Sortieren-Symbol aus, um die Sortierreihenfolge des **Katalog**-Steuerelements in Bezug auf die Namen der Produkte zu ändern.
 
@@ -131,21 +132,21 @@ So sortieren *und* filtern Sie das **Katalog**-Steuerelement:
 
 * Ersetzen Sie beide Instanzen von *ColumnName* durch den Namen der Spalte, nach der Sie sortieren und filtern möchten.
 
-**Sort(If(IsBlank(TextSearchBox1.Text),** *DataSource*, **Filter(** *DataSource*, **TextSearchBox1.Text in Text(** *ColumnName* **))),** *ColumnName*, **If(SortDescending1, SortOrder.Descending, SortOrder.Ascending))**
+**Sort(If(IsBlank(TextSearchBox1.Text);** *DataSource*, **Filter(** *DataSource*, **TextSearchBox1.Text in Text(** *ColumnName* **))),** *ColumnName*, **If(SortDescending1; SortOrder.Descending; SortOrder.Ascending))**
 
 ## <a name="highlight-the-selected-item"></a>Hervorheben des ausgewählten Elements
 Legen Sie die **TemplateFill**-Eigenschaft des **Katalog**-Steuerelements auf eine Formel fest, die der in diesem Beispiel ähnelt:
 
-**If(ThisItem.IsSelected, LightCyan, White)**
+**If(ThisItem.IsSelected; LightCyan; White)**
 
 ## <a name="change-the-default-selection"></a>Ändern der Standardauswahl
 Legen Sie die **Default**-Eigenschaft des **Katalog**-Steuerelements auf den Datensatz fest, der standardmäßig ausgewählt sein soll. Geben Sie beispielsweise das fünfte Element in der Datenquelle **FlooringEstimates** an:
 
-**Last(FirstN(FlooringEstimates, 5))**
+**Last(FirstN(FlooringEstimates; 5))**
 
 In diesem Beispiel geben Sie das erste Element in der Kategorie **Hardwood** der Datenquelle **FlooringEstimates** an:
 
-**First(Filter(FlooringEstimates, Category = "Hardwood"))**
+**First(Filter(FlooringEstimates; Category = "Hardwood"))**
 
 ## <a name="next-steps"></a>Nächste Schritte
 Informationen zum Arbeiten mit [Formularen](working-with-forms.md) und [Formeln](working-with-formulas.md).

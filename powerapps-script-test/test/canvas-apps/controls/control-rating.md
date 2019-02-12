@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42830869"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="rating-control-in-powerapps"></a>Steuerelement für Bewertungen in PowerApps
 Ein Steuerelement, mit dem Benutzer einen Wert zwischen 1 und einer maximalen Anzahl, die Sie festlegen, angeben können.
@@ -75,7 +76,7 @@ Mit diesem Steuerelement kann der Benutzer z.B. angeben, wie gut ihm etwas gefal
 **[Y](properties-size-location.md)** – Der Abstand zwischen dem oberen Rand eines Steuerelements und dem oberen Rand des übergeordneten Containers (bzw. des Bildschirms, wenn kein übergeordneter Container vorhanden ist).
 
 ## <a name="related-functions"></a>Verwandte Funktionen
-[**Average**( *Value1*, *Value2,* ... )](../functions/function-aggregates.md)
+[**Average**( *Value1*; *Value2;* ... )](../functions/function-aggregates.md)
 
 ## <a name="example"></a>Beispiel
 1. Fügen Sie ein Steuerelement **Rating** hinzu, und nennen Sie es **Quantitative**.
@@ -83,7 +84,7 @@ Mit diesem Steuerelement kann der Benutzer z.B. angeben, wie gut ihm etwas gefal
     Möchten Sie wissen, wie Sie [ein Steuerelement hinzufügen, benennen und konfigurieren](../add-configure-controls.md)?
 2. Fügen Sie ein Steuerelement **[Text input](control-text-input.md)** hinzu, nennen Sie es **Qualitative**, und verschieben Sie es unter das Steuerelement **Rating**.
 3. Legen Sie die Eigenschaft **[Default](properties-core.md)** des Steuerelements **[Text input](control-text-input.md)** auf **""** fest, und legen Sie sein **HintText** auf diese Formel fest:
-   <br>**If(Quantitative.Value > 3, „Was hat Ihnen besonders gefallen?“, „Wie können wir es besser machen?“)**
+   <br>**If(Quantitative.Value > 3; „Was hat Ihnen besonders gefallen?“; „Wie können wir es besser machen?“)**
    
     Benötigen Sie weitere Informationen zur **[If](../functions/function-if.md)**-Funktion oder [anderen Funktionen](../formula-reference.md)?
 4. Drücken Sie F5, und klicken oder tippen Sie anschließend auf entweder vier oder fünf Sterne im Steuerelement **Rating** (Bewertung).

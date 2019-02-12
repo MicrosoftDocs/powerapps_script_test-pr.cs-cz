@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42863276"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="remove-and-removeif-functions-in-powerapps"></a>Die Funktionen „Remove“ und „RemoveIf“ in PowerApps
 Entfernt [Datensätze](../working-with-tables.md#records) aus einer [Datenquelle](../working-with-data-sources.md).
@@ -40,19 +41,19 @@ Sie können auch die **[Clear](function-clear-collect-clearcollect.md)**  Funkti
 [!INCLUDE [delegation-no](../../../includes/delegation-no.md)]
 
 ## <a name="syntax"></a>Syntax
-**Remove**( *DataSource*, *Record1* [, *Record2*, ... ] [, **All** ] )
+**Remove**( *DataSource*; *Record1* [; *Record2*; ... ] [; **All** ] )
 
 * *Datenquelle*: Erforderlich. Die Datenquelle mit den Datensatz bzw. Datensätze, die Sie entfernen möchten.
 * *Datensatz/Datensätze*: erforderlich. Der Datensatz oder die Datensätze, die entfernt werden sollen.
 * **All**: Optional. In einer Sammlung wird möglicherweise der gleiche Datensatz mehr als einmal angezeigt.  Sie können das **All**-Argument hinzufügen, um alle Kopien des Datensatzes zu entfernen.
 
-**Remove**( *DataSource*, *Table* [, **All** ] )
+**Remove**( *DataSource*; *Table* [; **All** ] )
 
 * *Datenquelle*: Erforderlich. Die Datenquelle, die die Datensätze enthält, die Sie entfernen möchten.
 * *Tabelle*: erforderlich. Eine Tabelle von zu entfernenden Datensätzen
 * **All**: Optional. In einer Sammlung wird möglicherweise der gleiche Datensatz mehr als einmal angezeigt.  Sie können das **All**-Argument hinzufügen, um alle Kopien des Datensatzes zu entfernen.
 
-**RemoveIf**( *DataSource*, *Condition* [, ... ] )
+**RemoveIf**( *DataSource*; *Condition* [; ... ] )
 
 * *Datenquelle*: Erforderlich. Die Datenquelle mit den Datensatz bzw. Datensätze, die Sie entfernen möchten.
 * *Bedingung(en)* : Erforderlich. Eine Formel, die **TRUE** für die zu ersetzenden Datensätze ergibt.  Sie können auch die Spaltennamen aus *DataSource* in der Formel verwenden.  Wenn Sie mehrere *Bedingungen* angeben, müssen alle für Datensätze oder zu entfernende Datensätze zu **TRUE** ausgewertet werden.
@@ -64,14 +65,14 @@ In diesen Beispielen entfernen Sie einen Datensatz oder Datensätze aus einer Da
 
 | Formel | Beschreibung | Ergebnis |
 | --- | --- | --- |
-| **Remove(&nbsp;IceCream,<br>First(&nbsp;Filter(&nbsp;IceCream,&nbsp;Flavor="Chocolate"&nbsp;)&nbsp;) )** |Entfernt den Datensatz **Chocolate** (Schokolade) aus der Datenquelle |<style> img { max-width: none } </style> ![](media/function-remove-removeif/icecream-no-chocolate.png)<br><br>Die Datenquelle **IceCream** (Eiscreme) wurde geändert. |
-| **Remove(&nbsp;IceCream,<br>First(&nbsp;Filter(&nbsp;IceCream,&nbsp;Flavor="Chocolate"&nbsp;)&nbsp;) First(&nbsp;Filter(&nbsp;IceCream,&nbsp;Flavor="Strawberry"&nbsp;)&nbsp;) )** |Entfernt zwei Datensätze aus der Datenquelle. |![](media/function-remove-removeif/icecream-only-vanilla.png)<br><br>Die Datenquelle **IceCream** (Eiscreme) wurde geändert. |
-| **RemoveIf(&nbsp;IceCream, Quantity&nbsp;>&nbsp;150 )** |Entfernt die Datensätze mit einer **Quantity** (Menge) größer als **150**. |![](media/function-remove-removeif/icecream-only-chocolate.png)<br><br>Die Datenquelle **IceCream** (Eiscreme) wurde geändert. |
-| **RemoveIf(&nbsp;IceCream, Quantity&nbsp;>&nbsp;150, Left(&nbsp;Flavor,&nbsp;1&nbsp;) = "S" )** |Entfernt die Datensätze mit einer **Quantity** (Menge) größer als 150 und einem **Flavor** (Geschmack), der mit **S** beginnt |![](media/function-remove-removeif/icecream-no-strawberry.png)<br><br><br>Die Datenquelle **IceCream** (Eiscreme) wurde geändert. |
-| **RemoveIf(&nbsp;IceCream, true )** |Entfernt alle Einträge aus der Datenquelle |![](media/function-remove-removeif/icecream-empty.png)<br><br>Die Datenquelle **IceCream** (Eiscreme) wurde geändert. |
+| **Remove(&nbsp;IceCream;<br>First(&nbsp;Filter(&nbsp;IceCream;&nbsp;Flavor="Chocolate"&nbsp;)&nbsp;) )** |Entfernt den Datensatz **Chocolate** (Schokolade) aus der Datenquelle |<style> img { max-width: none } </style> ![](media/function-remove-removeif/icecream-no-chocolate.png)<br><br>Die Datenquelle **IceCream** (Eiscreme) wurde geändert. |
+| **Remove(&nbsp;IceCream;<br>First(&nbsp;Filter(&nbsp;IceCream;&nbsp;Flavor="Chocolate"&nbsp;)&nbsp;) First(&nbsp;Filter(&nbsp;IceCream;&nbsp;Flavor="Strawberry"&nbsp;)&nbsp;) )** |Entfernt zwei Datensätze aus der Datenquelle. |![](media/function-remove-removeif/icecream-only-vanilla.png)<br><br>Die Datenquelle **IceCream** (Eiscreme) wurde geändert. |
+| **RemoveIf(&nbsp;IceCream; Quantity&nbsp;>&nbsp;150 )** |Entfernt die Datensätze mit einer **Quantity** (Menge) größer als **150**. |![](media/function-remove-removeif/icecream-only-chocolate.png)<br><br>Die Datenquelle **IceCream** (Eiscreme) wurde geändert. |
+| **RemoveIf(&nbsp;IceCream; Quantity&nbsp;>&nbsp;150; Left(&nbsp;Flavor;&nbsp;1&nbsp;) = "S" )** |Entfernt die Datensätze mit einer **Quantity** (Menge) größer als 150 und einem **Flavor** (Geschmack), der mit **S** beginnt |![](media/function-remove-removeif/icecream-no-strawberry.png)<br><br><br>Die Datenquelle **IceCream** (Eiscreme) wurde geändert. |
+| **RemoveIf(&nbsp;IceCream; true )** |Entfernt alle Einträge aus der Datenquelle |![](media/function-remove-removeif/icecream-empty.png)<br><br>Die Datenquelle **IceCream** (Eiscreme) wurde geändert. |
 
 ### <a name="step-by-step"></a>Schritt für Schritt
 1. Importieren oder erstellen Sie eine Sammlung mit dem Namen **Inventory** (Lagerbestand), und zeigen Sie diese in einem Katalog an, wie unter [Show images and text in a gallery, including gallery selection, sort, and filter (Anzeigen von Bildern und Text in einem Katalog, einschließlich Auswählen, Sortieren und Filtern des Katalogs)](../show-images-text-gallery-sort-filter.md) beschrieben.
-2. Legen Sie im Katalog die **[OnSelect](../controls/properties-core.md)**-Eigenschaft des Bilds auf diesen Ausdruck fest:<br>**Remove(Inventory, ThisItem)**
+2. Legen Sie im Katalog die **[OnSelect](../controls/properties-core.md)**-Eigenschaft des Bilds auf diesen Ausdruck fest:<br>**Remove(Inventory; ThisItem)**
 3. Drücken Sie F5, und wählen Sie ein Bild im Katalog.<br>Das Element wird aus dem Katalog und der Sammlung entfernt.
 

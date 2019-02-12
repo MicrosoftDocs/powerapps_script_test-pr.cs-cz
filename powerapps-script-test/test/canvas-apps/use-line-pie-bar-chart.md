@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42862033"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="show-data-in-a-line-pie-or-bar-chart-in-powerapps"></a>Anzeigen von Daten in einem Linien-, Kreis- oder Balkendiagramm in PowerApps
 
@@ -49,7 +50,7 @@ In den folgenden Schritten importieren wir die Beispieldaten in eine Sammlung mi
 
 2. Legen Sie die Eigenschaft **[OnSelect](controls/properties-core.md)** des Steuerelements auf die folgende Funktion fest:  
 
-   ```Collect(ProductRevenue, Import1.Data)```
+   ```Collect(ProductRevenue; Import1.Data)```
 
 3. Drücken Sie F5 zum Öffnen des Vorschaumodus, und wählen Sie anschließend die Schaltfläche **Daten importieren** aus.
 

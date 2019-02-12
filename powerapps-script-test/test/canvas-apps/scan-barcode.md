@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42849541"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="scan-a-barcode-in-powerapps"></a>Scannen eines Barcodes in PowerApps
 
@@ -93,7 +94,7 @@ Wenn Sie mit PowerApps nicht vertraut sind, sehen Sie sich den Abschnitt [Erste 
     ![Verschieben der Dropdownliste](./media/scan-barcode/move-dropdown.png)
 
 3. Stellen Sie bei weiterhin ausgewähltem Steuerelement **Dropdown** sicher, dass in der Eigenschaftenliste **Items** angezeigt wird, und fügen oder geben Sie dann in der Bearbeitungsleiste die folgende Textzeichenfolge ein:<br>
-    **[Codabar, Code128, Code39, Ean, I2of5, Upc]**
+    **[Codabar; Code128; Code39; Ean; I2of5; Upc]**
 
     ![Festlegen der Items-Eigenschaft der Dropdownliste](./media/scan-barcode/items-property.png)
 

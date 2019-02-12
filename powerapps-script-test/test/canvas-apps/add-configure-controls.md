@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42826493"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="add-and-configure-a-canvas-app-control-in-powerapps"></a>Hinzufügen und Konfigurieren eines Canvas-App-Steuerelements in PowerApps
 
@@ -205,7 +206,7 @@ In diesem Verfahren fügen Sie ein Kontrollkästchen hinzu und konfigurieren dan
 
 7. Löschen Sie in der Bearbeitungsleiste den Text **true**, und geben bzw. fügen Sie dann diese Formel ein:
 
-    **If(MyCheckbox.Value = true, true, false)**
+    **If(MyCheckbox.Value = true; true; false)**
 
     Diese **[If-Funktion](functions/function-if.md)** legt fest, dass die Bezeichnung nur dann angezeigt werden soll, wenn das Kontrollkästchen aktiviert ist. Da das Kontrollkästchen deaktiviert ist, wird das **Label**-Steuerelement (Bezeichnung) ausgeblendet (mit Ausnahme des Auswahlfeldes).
 

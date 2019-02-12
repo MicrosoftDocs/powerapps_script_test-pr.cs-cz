@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42858283"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="connect-to-microsoft-translator-from-powerapps"></a>Herstellen einer Verbindung mit Microsoft Translator aus PowerApps
 ![Microsoft Translator](./media/connection-microsoft-translator/translatoricon.png)
@@ -57,7 +58,7 @@ In diesem Thema wird gezeigt, wie Sie die Microsoft Translator-Verbindung erstel
     `MicrosoftTranslator.Languages()`
 4. Fügen Sie eine Bezeichnung hinzu, verschieben Sie es unter **TargetLang**, und legen Sie seine **[Text](../controls/properties-core.md)**-Eigenschaft auf die folgende Formel fest:  
 
-    `MicrosoftTranslator.Translate(Source.Text, TargetLang.Selected.Value)`
+    `MicrosoftTranslator.Translate(Source.Text; TargetLang.Selected.Value)`
 5. Geben Sie Text in **Source** ein, und wählen Sie unter **TargetLang** eine Sprache aus. In der Bezeichnung wird der eingegebene Text in der ausgewählten Sprache angezeigt:  
 
     ![Übersetzen von Text aus dem Englischen ins Spanische](./media/connection-microsoft-translator/translate-text.png)
@@ -71,7 +72,7 @@ Wenn Sie dies nicht bereits getan haben, führen Sie die Schritte im vorherigen 
 2. Benennen Sie die zweite Bezeichnung (nicht das Feld **Source**) in **Target** um.
 3. Fügen Sie ein **Audio**-Steuerelement hinzu (Menü **Einfügen** > **Medien**), und legen Sie seine **Media**-Eigenschaft auf die folgende Formel fest:  
 
-    `MicrosoftTranslator.TextToSpeech(Target.Text, TargetLang.Selected.Value)`
+    `MicrosoftTranslator.TextToSpeech(Target.Text; TargetLang.Selected.Value)`
 4. Drücken Sie F5, oder wählen Sie die Vorschauschaltfläche aus (![](./media/connection-microsoft-translator/preview.png)). Geben Sie Text in **Source** ein, wählen Sie eine Sprache in **TargetLang** aus, und wählen Sie dann die Wiedergabeschaltfläche im Audio-Steuerelement aus.
 
     Die App spielt eine Audioversion des eingegebenen Texts in der ausgewählten Sprache ab.

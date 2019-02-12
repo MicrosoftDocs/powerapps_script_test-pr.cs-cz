@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42844182"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="first-firstn-last-and-lastn-functions-in-powerapps"></a>Die Funktion „First“, „FirstN“, „Last“ und „LastN“ in PowerApps
 Gibt den ersten oder letzten Satz von [Datensätze](../working-with-tables.md#records) einer Tabelle zurück.
@@ -41,7 +42,7 @@ Die **LastN**-Funktion gibt die letzte Gruppe von Datensätzen einer Tabelle zur
 
 * *Tabelle*: erforderlich. Die zu verarbeitende Tabelle.
 
-**FirstN**( *Table* [, *NumberOfRecords* ] )<br>**LastN**( *Table* [, *NumberOfRecords* ] )
+**FirstN**( *Table* [; *NumberOfRecords* ] )<br>**LastN**( *Table* [; *NumberOfRecords* ] )
 
 * *Tabelle* (erforderlich): Die zu verarbeitende Tabelle.
 * *ZahlDerDatensätze*: optional.  Die Anzahl der zurückzugebenden Datensätze. Wenn Sie dieses Argument nicht angeben, gibt die Funktion einen Datensatz zurück.
@@ -51,5 +52,5 @@ Diese Formel gibt den ersten Datensatz aus einer Tabelle mit dem Namen **Employe
 **First(Employees)**
 
 Diese Formel gibt die letzten 15 Datensätze aus einer Tabelle mit dem Namen **Employees** zurück:<br>
-**LastN(Employees, 15)**
+**LastN(Employees; 15)**
 

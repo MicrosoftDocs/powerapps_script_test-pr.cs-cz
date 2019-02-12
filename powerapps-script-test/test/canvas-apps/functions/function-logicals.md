@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42850348"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="and-or-and-not-functions-in-powerapps"></a>Die Funktionen „And“, „Or“ und „Not“ in PowerApps
 Boolesche Logikfunktionen, die oft dazu verwendet werden, die Ergebnisse von Vergleichen und Tests zu bearbeiten
@@ -33,8 +34,8 @@ Die **Not**-Funktion gibt **TRUE** zurück, wenn ihr Argument **FALSE** ist; sie
 Diese Funktionen arbeiten mit logischen Werten. Ihnen können keine Zahl oder Zeichenfolge direkt übergeben werden; stattdessen muss ein Vergleich oder Test vorgenommen werden. Beispielsweise ist ein Vergleich wie **x > 1** eine logische Formel, die den booleschen Wert **TRUE** ergibt, wenn **x** größer als **1** ist. Wenn **x** kleiner als **1** ist, ergibt die Formel **FALSE**.
 
 ## <a name="syntax"></a>Syntax
-**And**( *LogicalFormula1*, *LogicalFormula2* [, *LogicalFormula3*, ... ] )<br>
-**Or**( *LogicalFormula1*, *LogicalFormula2* [, *LogicalFormula3*, ... ] )<br>
+**And**( *LogicalFormula1*; *LogicalFormula2* [; *LogicalFormula3*; ... ] )<br>
+**Or**( *LogicalFormula1*; *LogicalFormula2* [; *LogicalFormula3*; ... ] )<br>
 **Not**( *LogicalFormula* )
 
 * *LogicalFormula(s)*: erforderlich.  Logische Formeln, die bewertet und verarbeitet werden sollen
@@ -43,11 +44,11 @@ Diese Funktionen arbeiten mit logischen Werten. Ihnen können keine Zahl oder Ze
 ### <a name="step-by-step"></a>Schritt für Schritt
 Verwenden Sie diese Funktion, um zu bestimmen, ob der Wert eines Schiebereglers außerhalb des Bereichs zwischen 50 und 100 liegt:
 
-**Or(Slider1.Value < 50, Slider1.Value> 100)**
+**Or(Slider1.Value < 50; Slider1.Value> 100)**
 
 Wenn eine [Tabelle](../working-with-tables.md) z.B. eine **Dept**-[Spalte](../working-with-tables.md#columns) (Schulden) und eine **Salary**-Spalte (Einkommen) enthält, können Sie diese Funktion in einer **Result**-Spalte (Ergebnis) verwenden, um **TRUE** in allen Zeilen anzuzeigen, in denen der Wert in der **Dept**-Spalte **HR** ist oder der Wert in der **Salary**-Spalte größer als **200.000** ist:
 
-**Or(Dept = HR, Salary >= 200000)**
+**Or(Dept = HR; Salary >= 200000)**
 
 Verwenden Sie alternativ den ||-Operator, um die gleichen Ergebnisse wie die vorherige Formel zurückzugeben:
 

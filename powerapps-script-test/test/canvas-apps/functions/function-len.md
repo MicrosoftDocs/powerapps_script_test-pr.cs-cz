@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42857568"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="len-function-in-powerapps"></a>Funktion „Len“ in PowerApps
 Gibt die Länge einer Textzeichenfolge zurück
@@ -53,6 +54,6 @@ Für das erste Beispiel in diesem Abschnitt erhält die Datenquelle den Namen **
 
 | Formel | Beschreibung | Ergebnis |
 | --- | --- | --- |
-| **Len( ShowColumns(&nbsp;People,&nbsp;"Address"&nbsp;) )** |In der **Adress**[-Spalte](../working-with-tables.md#columns) der **People**-Tabelle:<br><ul><li>Misst die Länge jeder einzelnen Zeichenfolge.</li><li>Gibt eine einspaltige Tabelle zurück, die die Länge jeder einzelnen Zeichenfolge enthält.</li> |<style> img { max-width: none } </style> ![](media/function-len/people-table-len.png) |
-| **Len( [ "Hello", "to the", "World", "" ] )** |In der **[Value](function-value.md)**-Spalte der linearen Tabelle:<br><ul><li>Misst die Länge jeder einzelnen Zeichenfolge.</li><li>Gibt eine einspaltige Tabelle zurück, die die Länge jeder einzelnen Zeichenfolge enthält.</li> |![](media/function-len/people-table-len-inline.png) |
+| **Len( ShowColumns(&nbsp;People;&nbsp;"Address"&nbsp;) )** |In der **Adress**[-Spalte](../working-with-tables.md#columns) der **People**-Tabelle:<br><ul><li>Misst die Länge jeder einzelnen Zeichenfolge.</li><li>Gibt eine einspaltige Tabelle zurück, die die Länge jeder einzelnen Zeichenfolge enthält.</li> |<style> img { max-width: none } </style> ![](media/function-len/people-table-len.png) |
+| **Len( [ "Hello"; "to the"; "World"; "" ] )** |In der **[Value](function-value.md)**-Spalte der linearen Tabelle:<br><ul><li>Misst die Länge jeder einzelnen Zeichenfolge.</li><li>Gibt eine einspaltige Tabelle zurück, die die Länge jeder einzelnen Zeichenfolge enthält.</li> |![](media/function-len/people-table-len-inline.png) |
 

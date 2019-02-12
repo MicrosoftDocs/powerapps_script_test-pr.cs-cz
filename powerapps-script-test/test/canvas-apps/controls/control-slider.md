@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42830734"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="slider-control-in-powerapps"></a>Schieberegler-Steuerelement in PowerApps
 Ein Steuerelement, mit dem der Benutzer durch Ziehen eines Handles einen Wert angeben kann
@@ -99,11 +100,11 @@ Der Benutzer kann einen Wert zwischen einem Mindest- und einem Höchstwert einge
 **[Y](properties-size-location.md)** – Der Abstand zwischen dem oberen Rand eines Steuerelements und dem oberen Rand des übergeordneten Containers (bzw. des Bildschirms, wenn kein übergeordneter Container vorhanden ist).
 
 ## <a name="related-functions"></a>Verwandte Funktionen
-[**Sum**( *Value1*, *Value2* )](../functions/function-aggregates.md)
+[**Sum**( *Value1*; *Value2* )](../functions/function-aggregates.md)
 
 ## <a name="example"></a>Beispiel
 1. Fügen Sie eine Schaltfläche hinzu, und legen Sie ihre Eigenschaft **[OnSelect](properties-core.md)** auf diese Formel fest:
-   <br>**ClearCollect(CityPopulations, {City:"London", Country:"United Kingdom", Population:8615000}, {City:"Berlin", Country:"Germany", Population:3562000}, {City:"Madrid", Country:"Spain", Population:3165000}, {City:"Rome", Country:"Italy", Population:2874000}, {City:"Paris", Country:"France", Population:2273000}, {City:"Hamburg", Country:"Germany", Population:1760000}, {City:"Barcelona", Country:"Spain", Population:1602000}, {City:"Munich", Country:"Germany", Population:1494000}, {City:"Milan", Country:"Italy", Population:1344000})**
+   <br>**ClearCollect(CityPopulations; {City:"London"; Country:"United Kingdom"; Population:8615000}; {City:"Berlin"; Country:"Germany"; Population:3562000}; {City:"Madrid"; Country:"Spain"; Population:3165000}; {City:"Rome"; Country:"Italy"; Population:2874000}; {City:"Paris"; Country:"France"; Population:2273000}; {City:"Hamburg"; Country:"Germany"; Population:1760000}; {City:"Barcelona"; Country:"Spain"; Population:1602000}; {City:"Munich"; Country:"Germany"; Population:1494000}; {City:"Milan"; Country:"Italy"; Population:1344000})**
    
     Möchten Sie wissen, wie Sie [ein Steuerelement hinzufügen, benennen und konfigurieren](../add-configure-controls.md)?
    
@@ -112,8 +113,8 @@ Der Benutzer kann einen Wert zwischen einem Mindest- und einem Höchstwert einge
 3. Fügen Sie einen Schieberegler ein, verschieben Sie ihn unter die Schaltfläche, und nennen Sie ihn **MinPopulation**.
 4. Legen Sie die **Max**-Eigenschaft des Schiebereglers auf **5000000** und seine **Min**-Eigenschaft auf **1000000** fest.
 5. Fügen Sie einen Textkatalog in vertikaler/Hochformat-Ausrichtung ein, verschieben Sie ihn unten den Schieberegler, und legen Sie die **[Items](properties-core.md)**-Eigenschaft des Katalogs auf diese Formel fest:<br>
-   **Filter(CityPopulations, Population > MinPopulation)**
-6. Legen Sie im ersten Element des Katalogs die Eigenschaft **[Text](properties-core.md)** der obersten Bezeichnung auf **ThisItem.City** und die Eigenschaft **[Text](properties-core.md)** der untersten Bezeichnung auf diese Formel fest:<br> **Text(ThisItem.Population, "##,###")**
+   **Filter(CityPopulations; Population > MinPopulation)**
+6. Legen Sie im ersten Element des Katalogs die Eigenschaft **[Text](properties-core.md)** der obersten Bezeichnung auf **ThisItem.City** und die Eigenschaft **[Text](properties-core.md)** der untersten Bezeichnung auf diese Formel fest:<br> **Text(ThisItem.Population; "##,###")**
 7. Drücken Sie F5, und passen Sie **MinPopulation** so an, dass nur Städte angezeigt werden, deren Einwohnerzahl die von Ihnen angegebene übersteigt.
 8. Drücken Sie ESC, um zum Standardarbeitsbereich zurückzukehren.
 

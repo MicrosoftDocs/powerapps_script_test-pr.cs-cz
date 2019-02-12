@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42843196"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="distinct-function-in-powerapps"></a>Distinct-Funktion in PowerApps
 Fasst [Datensätze](../working-with-tables.md#records) aus einer [Tabelle](../working-with-tables.md) zusammen, wobei Duplikate entfernt werden.
@@ -29,7 +30,7 @@ Die **Distinct**-Funktion wertet eine Formel für jeden Datensatz einer Tabelle 
 [!INCLUDE [record-scope](../../../includes/record-scope.md)]
 
 ## <a name="syntax"></a>Syntax
-**Distinct**( *Table*, *Formula* )
+**Distinct**( *Table*; *Formula* )
 
 * *Tabelle* (erforderlich):  Die Tabelle, die übergreifend ausgewertet werden soll.
 * *Formel* (erforderlich):  Die für jeden Datensatz auszuwertende Formel.
@@ -37,5 +38,5 @@ Die **Distinct**-Funktion wertet eine Formel für jeden Datensatz einer Tabelle 
 ## <a name="example"></a>Beispiel
 Wenn Sie eine Tabelle **Mitarbeiter** mit einer Spalte **Abteilung** haben, würde diese Funktion jeden individuellen Abteilungsnamen in dieser Spalte auflisten, unabhängig davon, wie oft jeder Name in der Spalte angezeigt wird:
 
-**Distinct(Employees, Department)**
+**Distinct(Employees; Department)**
 

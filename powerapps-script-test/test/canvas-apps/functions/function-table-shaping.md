@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 10/09/2018
 ms.locfileid: "48875897"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="addcolumns-dropcolumns-renamecolumns-and-showcolumns-functions-in-powerapps"></a>Die Funktionen „AddColumns“, „DropColumns“, „RenameColumns“ und „ShowColumns“ in PowerApps
 Formen eine [Tabelle](../working-with-tables.md) durch Hinzufügen, Verwerfen, Umbenennen und Auswählen der [Spalten](../working-with-tables.md#columns)
@@ -51,24 +52,24 @@ Das Ergebnis all dieser Funktionen ist eine neue Tabelle mit angewendeter Transf
 [!INCLUDE [delegation-no](../../../includes/delegation-no.md)]
 
 ## <a name="syntax"></a>Syntax
-**AddColumns**( *Tabelle*, *Spaltenname1*, *Formel1* [, *Spaltenname2*, *Formel2*, ... ] )
+**AddColumns**( *Tabelle*; *Spaltenname1*; *Formel1* [; *Spaltenname2*; *Formel2*; ... ] )
 
 * *Tabelle* (erforderlich):  Die zu verarbeitende Tabelle.
 * *ColumnName(s)*: erforderlich. Name(n) der hinzuzufügenden Spalte(n).  Sie müssen für dieses Argument eine Zeichenfolge angeben (z.B. **"Name"** in doppelten Anführungszeichen)
 * *Formel(n)* (erforderlich):  Die für jeden Datensatz der Tabelle auszuwertende(n) Formel(n). Das Ergebnis wird als der Wert der entsprechenden neuen Spalte hinzugefügt. Sie können in dieser Formel auf andere Spalten der Tabelle verweisen.
 
-**DropColumns**( *Tabelle*, *Spaltenname1* [, *Spaltenname2*, ... ] )
+**DropColumns**( *Tabelle*; *Spaltenname1* [; *Spaltenname2*; ... ] )
 
 * *Tabelle* (erforderlich):  Die zu verarbeitende Tabelle.
 * *ColumnName(s)*: erforderlich. Name(n) der zu verwerfenden Spalte(n). Sie müssen für dieses Argument eine Zeichenfolge angeben (z.B. **"Name"** in doppelten Anführungszeichen)
 
-**RenameColumns**( *Tabelle*, *AlterSpaltenname1*, *NeuerSpaltenname1* [, *AlterSpaltenname2*, *NeuerSpaltenname2*, ... ] )
+**RenameColumns**( *Tabelle*; *AlterSpaltenname1*; *NeuerSpaltenname1* [; *AlterSpaltenname2*; *NeuerSpaltenname2*; ... ] )
 
 * *Tabelle* (erforderlich):  Die zu verarbeitende Tabelle.
 * *AlterSpaltenname*: erforderlich. Name einer umzubenennenden Spalte aus der ursprünglichen Tabelle. Dieses Element wird als erstes in dem Argumentpaar angezeigt (oder als erstes in jedem Argumentpaar, wenn die Formel mehr als ein Paar enthält). Der Name muss eine Zeichenfolge sein (z.B. **"Name"** in doppelten Anführungszeichen).
 * *NeuerSpaltenname*: erforderlich. Der neue Name. Dieses Element wird als letztes in dem Argumentpaar angezeigt (oder als letztes in jedem Argumentpaar, wenn die Formel mehr als ein Paar enthält). Sie müssen für dieses Argument eine Zeichenfolge angeben (z.B. **"Customer Name"** (Kundenname) in doppelten Anführungszeichen).
 
-**ShowColumns**( *Tabelle*, *Spaltenname1* [, *Spaltenname2*, ... ] )
+**ShowColumns**( *Tabelle*; *Spaltenname1* [; *Spaltenname2*; ... ] )
 
 * *Tabelle* (erforderlich):  Die zu verarbeitende Tabelle.
 * *ColumnName(s)*: erforderlich. Name(n) der einzuschließenden Spalte(n). Sie müssen für dieses Argument eine Zeichenfolge angeben (z.B. **"Name"** in doppelten Anführungszeichen)
@@ -82,18 +83,18 @@ Keines dieser Beispiele verändert die Datenquelle **IceCreamSales**. Jede Funkt
 
 | Formel | Beschreibung | Ergebnis |
 | --- | --- | --- |
-| **AddColumns( IceCreamSales, "Revenue", UnitPrice * QuantitySold )** |Fügt dem Ergebnis die Spalte **Revenue** (Umsatz) hinzu.  **UnitPrice * QuantitySold** (Stückpreis * verkaufte Menge) wird für jeden Datensatz ausgewertet, und das Ergebnis wird in die neue Spalte eingefügt. |<style> img { max-width: none; } </style> ![](media/function-table-shaping/icecream-add-revenue.png) |
-| **DropColumns( IceCreamSales, "UnitPrice" )** |Schließt die Spalte **UnitPrice** aus dem Ergebnis aus. Mit dieser Funktion können Spalten ausgeschlossen und mit **ShowColumns** eingeschlossen werden. |![](media/function-table-shaping/icecream-drop-price.png) |
-| **ShowColumns( IceCreamSales, "Flavor" )** |Schließt nur die Spalte **Flavor** (Geschmack) im Resultset ein. Mithilfe dieser Funktion können Sie Spalten einschließen und mithilfe der Funktion **DropColumns** ausschließen. |![](media/function-table-shaping/icecream-select-flavor.png) |
-| **RenameColumns( IceCreamSales, "UnitPrice", "Price")** |Benennt die Spalte **UnitPrice** im Resultset um. |![](media/function-table-shaping/icecream-rename-price.png) |
-| **RenameColumns( IceCreamSales, "UnitPrice", "Price", "QuantitySold", "Number")** |Benennt die Spalten **UnitPrice** und **QuantitySold** im Ergebnis um. |![](media/function-table-shaping/icecream-rename-price-quant.png) |
-| **DropColumns(<br>RenameColumns(<br>AddColumns( IceCreamSales, "Revenue",<br>UnitPrice * QuantitySold ),<br>"UnitPrice", "Price" ),<br>"Quantity" )** |Führt der Reihe nach die folgenden Transformationen aus, beginnend im Kern der Formel: <ol><li>Fügt eine **Revenue**-Spalte basierend auf der Berechnung von **UnitPrice * Quantity** (Stückpreis * Menge) pro Datensatz hinzu.<li>Benennt **UnitPrice** in **Price** (Preis) um.<li>Schließt die Spalte **Quantity** aus.</ol>  Beachten Sie, dass diese Reihenfolge wichtig ist. Angenommen, **UnitPrice** kann nach der Umbenennung nicht berechnet werden. |![](media/function-table-shaping/icecream-all-transforms.png) |
+| **AddColumns( IceCreamSales; "Revenue"; UnitPrice * QuantitySold )** |Fügt dem Ergebnis die Spalte **Revenue** (Umsatz) hinzu.  **UnitPrice * QuantitySold** (Stückpreis * verkaufte Menge) wird für jeden Datensatz ausgewertet, und das Ergebnis wird in die neue Spalte eingefügt. |<style> img { max-width: none; } </style> ![](media/function-table-shaping/icecream-add-revenue.png) |
+| **DropColumns( IceCreamSales; "UnitPrice" )** |Schließt die Spalte **UnitPrice** aus dem Ergebnis aus. Mit dieser Funktion können Spalten ausgeschlossen und mit **ShowColumns** eingeschlossen werden. |![](media/function-table-shaping/icecream-drop-price.png) |
+| **ShowColumns( IceCreamSales; "Flavor" )** |Schließt nur die Spalte **Flavor** (Geschmack) im Resultset ein. Mithilfe dieser Funktion können Sie Spalten einschließen und mithilfe der Funktion **DropColumns** ausschließen. |![](media/function-table-shaping/icecream-select-flavor.png) |
+| **RenameColumns( IceCreamSales; "UnitPrice"; "Price")** |Benennt die Spalte **UnitPrice** im Resultset um. |![](media/function-table-shaping/icecream-rename-price.png) |
+| **RenameColumns( IceCreamSales; "UnitPrice"; "Price"; "QuantitySold"; "Number")** |Benennt die Spalten **UnitPrice** und **QuantitySold** im Ergebnis um. |![](media/function-table-shaping/icecream-rename-price-quant.png) |
+| **DropColumns(<br>RenameColumns(<br>AddColumns( IceCreamSales; "Revenue";<br>UnitPrice * QuantitySold );<br>"UnitPrice"; "Price" );<br>"Quantity" )** |Führt der Reihe nach die folgenden Transformationen aus, beginnend im Kern der Formel: <ol><li>Fügt eine **Revenue**-Spalte basierend auf der Berechnung von **UnitPrice * Quantity** (Stückpreis * Menge) pro Datensatz hinzu.<li>Benennt **UnitPrice** in **Price** (Preis) um.<li>Schließt die Spalte **Quantity** aus.</ol>  Beachten Sie, dass diese Reihenfolge wichtig ist. Angenommen, **UnitPrice** kann nach der Umbenennung nicht berechnet werden. |![](media/function-table-shaping/icecream-all-transforms.png) |
 
 ### <a name="step-by-step"></a>Schritt für Schritt
 1. Importieren oder erstellen Sie eine Sammlung namens **Inventory** (Inventar), wie im ersten Unterverfahren unter [Anzeigen von Bildern und Text in einem Katalog](../show-images-text-gallery-sort-filter.md) beschrieben.
 2. Fügen Sie eine Schaltfläche hinzu, und legen Sie ihre Eigenschaft **[OnSelect](../controls/properties-core.md)** auf diese Formel fest:
    
-    **ClearCollect(Inventory2, RenameColumns(Inventory, "ProductName", "JacketID"))**
+    **ClearCollect(Inventory2; RenameColumns(Inventory; "ProductName"; "JacketID"))**
 3. Drücken Sie F5, klicken Sie auf die Schaltfläche, die Sie gerade erstellt haben, und drücken Sie die ESC-TASTE, um zum Designarbeitsbereich zurückzukehren.
 4. Wählen Sie im Menü **Datei** **Sammlungen** aus.
 5. Vergewissern Sie sich, dass Sie eine Sammlung namens **Inventory2** erstellt haben. Die neue Sammlung enthält fast dieselben Informationen wie **Inventory**, nur die Spalte **ProductName** in **Inventory** heißt **JacketID** in **Inventory2**.

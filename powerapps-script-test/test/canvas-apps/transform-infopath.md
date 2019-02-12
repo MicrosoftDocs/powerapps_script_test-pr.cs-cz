@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 10/23/2018
 ms.locfileid: "49806223"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="transform-your-infopath-form-to-powerapps"></a>Transformieren des InfoPath-Formulars in ein PowerApps-Formular
 
@@ -93,7 +94,7 @@ Scrollen Sie im rechten Bereich zur **DefaultMode**-Eigenschaft, sodass Sie dies
 
 In diesem Beispiel verwenden Sie eine **If**-Formel:
 
-```If(ThisItem.Color = "Blue", DisplayMode.View, DisplayMode.Edit)```
+```If(ThisItem.Color = "Blue"; DisplayMode.View; DisplayMode.Edit)```
 
 Diese Formel besagt Folgendes: Wenn das **Color**-Feld des aktuellen Elements auf **Blue** festgelegt ist, ist das **Animal**-Feld schreibgeschützt. Andernfalls kann das Feld bearbeitet werden.
 
@@ -101,21 +102,21 @@ Um die Karte auszublenden, anstatt sie als schreibgeschützt festzulegen, fügen
 
 Sie können beispielsweise auch eine Genehmigungsschaltfläche verwenden, die nur angezeigt wird, wenn die E-Mail-Adresse des Benutzers der E-Mail-Adresse der genehmigenden Person entspricht. (Hinweis: Verwenden Sie **User().Email**, um auf die E-Mail-Adresse des aktuellen Benutzers zuzugreifen.) Sie können also die E-Mail-Adresse der genehmigenden Person in **YourDataCard** speichern und dann die **Visible**-Eigenschaft der Schaltfläche auf diese Formel festlegen:
 
-```If(YourDataCard.Text = User().Email, true, false)```
+```If(YourDataCard.Text = User().Email; true; false)```
 
 **Bedingte Formatierung**  
 In ähnlicher Weise wie oben, wo Sie das Feld ausgeblendet haben, können Sie den Benutzern auch visuelles Feedback geben. Möglicherweise möchten Sie Text in Rot markieren, wenn der eingegebene Wert außerhalb des zulässigen Bereichs liegt, oder den Text und die Farbe der Uploadschaltfläche ändern, nachdem der Benutzer eine Datei hochgeladen hat. Beides können Sie in Eigenschaften wie **Color** oder **Visible** mithilfe einer Funktion umsetzen, z.B. **If**.
 
 Sie könnten z.B. die **If**-Funktion zusammen mit der [IsMatch](functions/function-ismatch.md)-Funktion verwenden, um die Textfarbe des E-Mail-Felds in Rot zu ändern, wenn der Benutzer keine korrekt formatierte E-Mail-Adresse in das Eingabefeld eingibt. In diesem Fall legen Sie den **Color**-Wert von **TextInput1** (das Feld, in dem der Benutzer eine E-Mail-Adresse eingibt) auf die folgende Formel fest:
 
-```If(IsMatch(TextInput1.Text, Email), Black, Red)```
+```If(IsMatch(TextInput1.Text; Email); Black; Red)```
 
 **IsMatch** bietet eine Vielzahl von vordefinierten Mustern (wie E-Mail-Adressen) und die Möglichkeit, eigene Muster zu erstellen. Weitere Informationen zur bedingten Formatierung finden Sie in diesem [Communityvideo](https://powerusers.microsoft.com/t5/Video-Webinar-Gallery/PowerApps-Conditional-Formatting-and-Popups/m-p/84962).
 
 **Implementieren der rollenbasierten Sicherheit**  
 Die erste Funktion, die Sie ins Auge fassen sollten, lautet [DataSourceInfo](functions/function-datasourceinfo.md). Die Informationen, die Sie von der Datenquelle erhalten, variieren, aber häufig können Sie diese Formel verwenden, um zu prüfen, ob der Benutzer Zugriff auf die Daten hat (ersetzen Sie *YourDataSource* durch den Namen Ihrer Datenquelle):
 
-```DataSourceInfo(YourDataSource, DataSourceInfo.EditPermission)```
+```DataSourceInfo(YourDataSource; DataSourceInfo.EditPermission)```
 
 So können Sie ein Formular oder eine Schaltfläche nur dann einblenden, wenn der Benutzer über Schreibzugriff verfügt. Die vollständige Liste der Informationen, die Sie in der Funktion abfragen können, finden Sie in der Dokumentation zu [DataSourceInfo](functions/function-datasourceinfo.md).
 
@@ -138,7 +139,7 @@ Wenn Sie dennoch Variablen benötigen (was in vielen Fällen vorkommt), erfahren
 
 - Globale Variablen sind das, woran Sie zuerst denken. Geben Sie mit der [Set](functions/function-set.md)-Funktion einen Wert für eine globale Variable an, und machen Sie den Wert in der gesamten App verfügbar:
 
-    ```Set(YourVariable, YourValue)```
+    ```Set(YourVariable; YourValue)```
 
     Dann können Sie in der gesamten App namentlich auf *YourVariable* verweisen.
 
@@ -157,11 +158,11 @@ Hierarchische Dropdownlisten sind sehr praktisch, da Sie z.B. die Auswahl in ein
 
 In diesem Beispiel können Sie eine Dropdownliste namens **ddSelectType** hinzufügen und die **Items**-Eigenschaft der Liste auf folgende Formel festlegen:
 
-```Distinct(Impacts, Title)```
+```Distinct(Impacts; Title)```
 
 Die Dropdownliste würde nur die folgenden Elemente anzeigen: Cost, Program Impact und Schedule. Dann können Sie eine zweite Dropdownliste hinzufügen und deren **Items**-Eigenschaft auf die folgende Formel festlegen:
 
-```Filter(Impacts,ddSelectType.Selected.Value in SCategory)```
+```Filter(Impacts;ddSelectType.Selected.Value in SCategory)```
 
 So einfach erhalten Sie überlappende Dropdownmenüs. Weitere Informationen finden Sie in diesem Beitrag des PowerApps-Teams [SharePoint: Cascading Dropdowns in 4 Easy Steps!](https://powerusers.microsoft.com/t5/PowerApps-Community-Blog/SharePoint-Cascading-Dropdowns-in-4-Easy-Steps/ba-p/16248) (SharePoint: Hierarchische Dropdownlisten in vier einfachen Schritten) oder in diesem [Communityvideo](https://powerusers.microsoft.com/t5/Video-Webinar-Gallery/PowerApps-Cascading-Dropdown/m-p/92813). Keine Sorge: Sie können diese Aufgaben genauso einfach ohne SharePoint ausführen.
 

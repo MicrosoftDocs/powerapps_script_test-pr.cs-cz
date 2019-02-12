@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42850220"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="rand-function-in-powerapps"></a>Funktion „Rand“ in PowerApps
 Gibt eine pseudozufällige Zahl zurück.
@@ -62,7 +63,7 @@ Bei der Verwendung in einer [Verhaltensformel](../working-with-formulas-in-depth
 #### <a name="create-a-table-of-random-numbers"></a>Erstellen einer Tabelle mit Zufallszahlen
 1. Fügen Sie ein **[Button](../controls/control-button.md)**-Steuerelement (Schaltfläche) hinzu, und legen Sie seine **[OnSelect](../controls/properties-core.md)**-Eigenschaft auf diese Formel fest:
 
-    **ClearCollect( RandomNumbers, ForAll( [ 1, 2, 3, 4, 5 ], Rand() ))**
+    **ClearCollect( RandomNumbers; ForAll( [ 1; 2; 3; 4; 5 ]; Rand() ))**
 
     Diese Formel erstellt eine Tabelle mit einer Spalte, mit der eine fünfmalige Iteration ausgeführt wird. Das Ergebnis sind fünf Zufallszahlen.
 
@@ -80,4 +81,4 @@ Bei der Verwendung in einer [Verhaltensformel](../working-with-formulas-in-depth
 
     ![Die gleiche Anzeige mit einer Tabelle mit fünf neuen Dezimalwerten: 0,414, 0,128, 0,860, 0,303 und 0,568](media/function-rand/rand-collection-2.png)
 
-Um eine einzelne Zufallszahl statt einer Tabelle zu generieren, verwenden Sie **Set( RandomNumber, Rand() )**.
+Um eine einzelne Zufallszahl statt einer Tabelle zu generieren, verwenden Sie **Set( RandomNumber; Rand() )**.

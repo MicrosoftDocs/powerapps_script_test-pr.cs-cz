@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42857901"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="day-month-year-hour-minute-second-and-weekday-functions-in-powerapps"></a>Die Funktionen „Day“, „Month“, „Year“, „Hour“, „Minute“, „Second“ und „Weekday“ in PowerApps
 Gibt die einzelnen Bestandteile eines Datum/Uhrzeit-Werts zurück
@@ -58,7 +59,7 @@ Weitere Informationen finden Sie unter [Arbeiten mit Datums- und Uhrzeitangaben]
 
 * *DatumUhrzeit*: erforderlich.  Der zu verarbeitende Datum/Uhrzeit-Wert  
 
-**Weekday**( *DateTime* [, *WeekdayFirst* ] )<br>
+**Weekday**( *DateTime* [; *WeekdayFirst* ] )<br>
 
 * *DatumUhrzeit*: erforderlich.  Der zu verarbeitende Datum/Uhrzeit-Wert 
 * *ErsterWochentag*: optional.  Der Excel-Code, der angibt, mit welchem Tag die Woche beginnt.  Wenn nicht angegeben, wird 1 (Sonntag zuerst) verwendet.
@@ -75,6 +76,6 @@ Im folgenden Beispiel ist die aktuelle Uhrzeit **3:59:37 PM** am **Donnerstag, 9
 | **Minute(&nbsp;Now()&nbsp;)** |Gibt die Minutenkomponente der aktuellen Uhrzeit und des aktuellen Datums zurück |59 |
 | **Second(&nbsp;Now()&nbsp;)** |Gibt die Minutenkomponente der aktuellen Uhrzeit und des aktuellen Datums zurück |37 |
 | **Weekday(&nbsp;Now()&nbsp;)** |Gibt die Wochentagkomponente der aktuellen Uhrzeit und des aktuellen Datums mit dem Standardwochenbeginn am Sonntag zurück |5 |
-| **Weekday(&nbsp;Now(),&nbsp;14&nbsp;)** |Gibt die Wochentagkomponente der aktuellen Uhrzeit und des aktuellen Datums mit einem Excel-Code, der den Wochenbeginn auf Donnerstag festlegt, zurück |1 |
-| **Weekday(&nbsp;Now(),&nbsp;StartOfWeek.Wednesday&nbsp;)** |Gibt die Wochentagkomponente der aktuellen Uhrzeit und des aktuellen Datums mithilfe einer **StartOfWeek**-Enumeration, die den Wochenbeginn auf Mittwoch festlegt, zurück |2 |
+| **Weekday(&nbsp;Now();&nbsp;14&nbsp;)** |Gibt die Wochentagkomponente der aktuellen Uhrzeit und des aktuellen Datums mit einem Excel-Code, der den Wochenbeginn auf Donnerstag festlegt, zurück |1 |
+| **Weekday(&nbsp;Now();&nbsp;StartOfWeek.Wednesday&nbsp;)** |Gibt die Wochentagkomponente der aktuellen Uhrzeit und des aktuellen Datums mithilfe einer **StartOfWeek**-Enumeration, die den Wochenbeginn auf Mittwoch festlegt, zurück |2 |
 

@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42865806"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="editform-newform-submitform-resetform-and-viewform-functions-in-powerapps"></a>Funktionen „EditForm“, „NewForm“, „SubmitForm“, „ResetForm“ und „ViewForm“ in PowerApps
 Zeigen Sie ein Element an, bearbeiten oder erstellen Sie ein Element, speichern Sie den Inhalt und setzen Sie die Steuerelemente in einem **[Bearbeitungsformular](../controls/control-form-detail.md)**-Steuerelement zurück.
@@ -110,12 +111,12 @@ Ausführliche Beispiele finden Sie unter [Understand data forms (Grundlegendes z
    * Wenn die Übermittlung fehlschlägt, zeigt **ErrorText** eine benutzerfreundliche Fehlermeldung an, und die aktuelle Ansicht bleibt sichtbar, sodass der Benutzer das Problem beheben und den Vorgang wiederholen kann.
 4. Fügen Sie ein Button-Steuerelement hinzu, legen Sie dessen **[Text](../controls/properties-core.md)**-Eigenschaft auf **Cancel** (Abbrechen) und dessen **[OnSelect](../controls/properties-core.md)**-Eigenschaft auf diese Formel fest:
    
-    **ResetForm( EditForm ); Back()**
+    **ResetForm( EditForm );; Back()**
    
     Wenn der Benutzer die Schaltfläche **Cancel** (Abbrechen) auswählt, werden die Werte im Formularsteuerelement in den Zustand vor der Bearbeitung durch den Benutzer zurückgesetzt, die vorherige Ansicht wird erneut angezeigt, und das Formularsteuerelement wird in den **Edit**-Modus (Bearbeiten) zurückgesetzt, wenn es sich im **New**-Modus (Neu) befand.
 5. Fügen Sie ein Button-Steuerelement hinzu, legen Sie dessen **[Text](../controls/properties-core.md)**-Eigenschaft auf **New** (Neu) und dessen **[OnSelect](../controls/properties-core.md)**-Eigenschaft auf diese Formel fest:
    
-    **NewForm( EditForm ); Navigate( EditScreen, None )**
+    **NewForm( EditForm );; Navigate( EditScreen; None )**
    
     Wenn der Benutzer die Schaltfläche **New** (Neu) auswählt, wechselt das Formularsteuerelement in den **New**-Modus (Neu), das Steuerelement wird mit den Standardwerten für die Datenquelle des Formularsteuerelements aufgefüllt, und das Formular mit dem Formularsteuerelement wird angezeigt. Wenn die **SubmitForm**-Funktion ausgeführt wird, wird ein Datensatz erstellt anstatt aktualisiert.
 

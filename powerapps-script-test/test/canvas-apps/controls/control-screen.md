@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 12/18/2018
 ms.locfileid: "53570395"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="screen-control-in-powerapps"></a>Bildschirm-Steuerelement in PowerApps
 Ein Benutzeroberflächenelement, das in einer App ein oder mehrere Steuerelemente enthält
@@ -46,22 +47,22 @@ Die meisten Apps verfügen über mehrere **Bildschirm**-Steuerelemente, die **[B
 * Die **OnStart**-Eigenschaft ist tatsächlich eine Eigenschaft der App und nicht des Bildschirms. Zur Vereinfachung der Bearbeitung wird sie als Eigenschaft auf dem ersten Bildschirm Ihrer App angezeigt und geändert. Wenn Sie den ersten Bildschirm entfernen oder Bildschirme neu anordnen, kann diese Eigenschaft schwer zu finden sein. In diesem Fall sollten Sie Ihre App speichern, schließen und neu laden, woraufhin die Eigenschaft wieder als Eigenschaft auf dem ersten Bildschirm angezeigt wird.
 
 ## <a name="related-functions"></a>Verwandte Funktionen
-[**Distinct**( *DataSource*, *ColumnName* )](../functions/function-distinct.md)
+[**Distinct**( *DataSource*; *ColumnName* )](../functions/function-distinct.md)
 
 ## <a name="example"></a>Beispiel
 1. Fügen Sie ein**[Optionsfeld](control-radio.md)**-Steuerelement hinzu, nennen Sie es **ScreenFills**, und legen Sie seine **[Items](properties-core.md)**-Eigenschaft auf folgenden Wert fest:<br>
-   **["Red", "Green"]**
+   **["Red"; "Green"]**
    
     Möchten Sie wissen, wie Sie [ein Steuerelement hinzufügen, benennen und konfigurieren](../add-configure-controls.md)?
 2. Nennen Sie die das **Bildschirm**-Standardsteuerelement **Source**, fügen Sie ein weiteres **Bildschirm**-Steuerelement hinzu, und nennen Sie es **Target**.
 3. Fügen Sie in **Source** ein **[Shape](control-shapes-icons.md)**-Steuerelement (z.B. einen Pfeil) hinzu, und legen Sie seine **[OnSelect](properties-core.md)**-Eigenschaft auf diese Formel fest:<br>
-   **Navigate(Target, ScreenTransition.Fade)**
+   **Navigate(Target; ScreenTransition.Fade)**
    
     Benötigen Sie weitere Informationen zur **[Navigate](../functions/function-navigate.md)**-Funktion oder [anderen Funktionen](../formula-reference.md)?
 4. Fügen Sie in **Target** ein **[Shape](control-shapes-icons.md)**-Steuerelement hinzu (z.B. einen Pfeil), und legen Sie seine **[OnSelect](properties-core.md)**-Eigenschaft auf diese Formel fest:<br>
-   **Navigate(Source, ScreenTransition.Fade)**
+   **Navigate(Source; ScreenTransition.Fade)**
 5. Legen Sie die **[Fill](properties-color-border.md)**-Eigenschaft von **Target** auf diese Formel fest:<br>
-   **If("Red" in ScreenFills.Selected.Value, RGBA(255, 0, 0, 1), RGBA(54, 176, 75, 1))**
+   **If("Red" in ScreenFills.Selected.Value; RGBA(255; 0; 0; 1); RGBA(54; 176; 75; 1))**
 6. Drücken Sie von **Source** auf F5, klicken oder tippen Sie auf eine der Optionen im **[Optionsfeld](control-radio.md)**-Steuerelement, und klicken oder tippen Sie anschließend auf das **[Shape](control-shapes-icons.md)**-Steuerelement.
    
     **Target** wird in der von Ihnen ausgewählten Farbe angezeigt.

@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42833514"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="ismatch-function-in-powerapps"></a>Funktion „IsMatch“ in PowerApps
 Prüft, ob eine Zeichenfolge mit einem Muster übereinstimmt
@@ -72,7 +73,7 @@ Mit vordefinierten Mustern können Sie ganz leicht ein Zeichen aus einem Zeichen
 | **Any** |Ordnet ein beliebiges Zeichen zu |**.** |
 | **Comma** |Ordnet ein Komma zu |**,** |
 | **Digit** |Ordnet eine einzelne Ziffer („0“ bis „9“) zu |**\\d** |
-| **Email** |Ordnet eine E-Mail-Adresse zu, die ein at-Zeichen (\@) und einen Domänennamen enthält, der einen Punkt (.) enthält |**.+\@.+\\.[^\\.]{2,}** |
+| **Email** |Ordnet eine E-Mail-Adresse zu, die ein at-Zeichen (\@) und einen Domänennamen enthält, der einen Punkt (.) enthält |**.+\@.+\\.[^\\.]{2;}** |
 | **Hyphen** |Ordnet einen Bindestrich zu |**\\-** |
 | **LeftParen** |Ordnet eine linke Klammer „(“ zu |**\\(** |
 | **Letter** |Ordnet einen Buchstaben zu |**\\p{L}** |
@@ -115,7 +116,7 @@ Standardmäßig prüft **IsMatch** auf eine vollständige Übereinstimmung mit d
 | **Multiline** |Zeilenübergreifende Übereinstimmung |Ändert nicht den regulären Ausdruck |
 
 ## <a name="syntax"></a>Syntax
-**IsMatch**( *Text*, *Pattern* [, *Options* ] )
+**IsMatch**( *Text*; *Pattern* [; *Options* ] )
 
 * *Text*: Erforderlich.  Die zu prüfende Textzeichenfolge
 * *Pattern*: erforderlich.  Das zu prüfende Muster als Textzeichenfolge  Verketten Sie vordefinierte Muster, die die **Match**-Enumeration definiert, oder stellen Sie einen regulären Ausdruck zur Verfügung.
@@ -129,29 +130,29 @@ Der Benutzer gibt **Hello World** in **Texteingabe1** ein.
 
 | Formel | Beschreibung | Ergebnis |
 | --- | --- | --- |
-| **IsMatch( TextInput1.Text, "Hello world" )** |Prüft, ob die Benutzereingaben genau mit der Zeichenfolge „Hello World“ übereinstimmt |**TRUE** |
-| **IsMatch( TextInput1.Text, "Good bye" )** |Prüft, ob die Benutzereingaben genau mit der Zeichenfolge "Good Bye" übereinstimmt |**FALSE** |
-| **IsMatch( TextInput1.Text, "hello", Contains )** |Prüft, ob die Eingabe des Benutzers das Wort „Hello“ (Groß-/Kleinschreibung wird beachtet) enthält |**FALSE** |
-| **IsMatch( TextInput1.Text, "hello", Contains & IgnoreCase )** |Prüft, ob die Eingabe des Benutzers das Wort „Hello“(Groß-/Kleinschreibung beachten) enthält. |**TRUE** |
+| **IsMatch( TextInput1.Text; "Hello world" )** |Prüft, ob die Benutzereingaben genau mit der Zeichenfolge „Hello World“ übereinstimmt |**TRUE** |
+| **IsMatch( TextInput1.Text; "Good bye" )** |Prüft, ob die Benutzereingaben genau mit der Zeichenfolge "Good Bye" übereinstimmt |**FALSE** |
+| **IsMatch( TextInput1.Text; "hello"; Contains )** |Prüft, ob die Eingabe des Benutzers das Wort „Hello“ (Groß-/Kleinschreibung wird beachtet) enthält |**FALSE** |
+| **IsMatch( TextInput1.Text; "hello"; Contains & IgnoreCase )** |Prüft, ob die Eingabe des Benutzers das Wort „Hello“(Groß-/Kleinschreibung beachten) enthält. |**TRUE** |
 
 ### <a name="predefined-patterns"></a>Vordefinierte Muster
 
 |                                                            Formel                                                            |                                                                Beschreibung                                                                |  Ergebnis   |
 |-------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|-----------|
-| **IsMatch( "123-45-7890", Digit & Digit & Digit & Hyphen & Digit & Digit & Hyphen & Digit & Digit & Digit & Digit & Digit )** |                                              Ordnet eine US-Sozialversicherungsnummer zu                                               | **TRUE**  |
-|                                           **IsMatch( "joan@contoso.com", Email )**                                            |                                                         Ordnet eine E-Mail-Adresse zu                                                          | **TRUE**  |
-|                              **IsMatch( "123.456", MultipleDigits & Period & OptionalDigits )**                               |                                   Ordnet eine Folge von Ziffern, einen Punkt (.) und dann 0 (null) oder mehrere Ziffern zu                                   | **TRUE**  |
-|                                **IsMatch( "123", MultipleDigits & Period & OptionalDigits )**                                 | Ordnet eine Folge von Ziffern, einen Punkt (.) und dann 0 (null) oder mehrere Ziffern zu Im Text kommt kein Punkt vor, weshalb dieses Muster nicht übereinstimmt. | **FALSE** |
+| **IsMatch( "123-45-7890"; Digit & Digit & Digit & Hyphen & Digit & Digit & Hyphen & Digit & Digit & Digit & Digit & Digit )** |                                              Ordnet eine US-Sozialversicherungsnummer zu                                               | **TRUE**  |
+|                                           **IsMatch( "joan@contoso.com"; Email )**                                            |                                                         Ordnet eine E-Mail-Adresse zu                                                          | **TRUE**  |
+|                              **IsMatch( "123.456"; MultipleDigits & Period & OptionalDigits )**                               |                                   Ordnet eine Folge von Ziffern, einen Punkt (.) und dann 0 (null) oder mehrere Ziffern zu                                   | **TRUE**  |
+|                                **IsMatch( "123"; MultipleDigits & Period & OptionalDigits )**                                 | Ordnet eine Folge von Ziffern, einen Punkt (.) und dann 0 (null) oder mehrere Ziffern zu Im Text kommt kein Punkt vor, weshalb dieses Muster nicht übereinstimmt. | **FALSE** |
 
 ### <a name="regular-expressions"></a>Reguläre Ausdrücke
 
 |                                                                              Formel                                                                              |                                                                                                                                  Beschreibung                                                                                                                                   |  Ergebnis   |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
-|                                                                    **IsMatch( "986", "\d+" )**                                                                    |                                                                                                                    Ordnet eine ganze Zahl größer als 0 (null) zu                                                                                                                     | **TRUE**  |
-|                                                               **IsMatch( "1.02", "\d+(\.\d\d)?" )**                                                               |                                        Ordnet einen positiven Währungsbetrag zu Wenn die Eingabe ein Dezimaltrennzeichen enthält, muss die Eingabe auch zwei numerische Zeichen nach dem Dezimaltrennzeichen enthalten. 3,00 ist beispielsweise gültig, aber 3,1 nicht.                                         | **TRUE**  |
-|                                                            **IsMatch( "-4.95", "(-)?\d+(\.\d\d)?" )**                                                             |                                                        Ordnet einen positiven oder negativen Währungsbetrag zu. Wenn die Eingabe ein Dezimaltrennzeichen enthält, muss die Eingabe auch zwei numerische Zeichen nach dem Dezimaltrennzeichen enthalten.                                                        | **TRUE**  |
-|                                                         **IsMatch( "111-11-1111", "\d{3}-\d{2}-\d{4}" )**                                                         | Ordnet eine US-Sozialversicherungsnummer zu  Überprüft das Format, den Typ und die Länge des angegebenen Eingabefelds. Die Zeichenfolge, die übereinstimmen soll, muss aus drei numerischen Zeichen gefolgt von einem Bindestrich und dann 2 numerische Zeichen gefolgt von einem Bindestrich und dann 4 numerischen Zeichen bestehen. | **TRUE**  |
-|                                                         **IsMatch( "111-111-111", "\d{3}-\d{2}-\d{4}" )**                                                         |                                                                                               Wie im vorherigen Beispiel, aber einer der Bindestriche ist in der Eingabe an der falschen Stelle                                                                                               | **FALSE** |
-|                                         **IsMatch( "weakpassword", "(?!^[0-9]\*$)(?!^[a-zA-Z]\*$)([a-zA-Z0-9]{8,10})" )**                                         |                                        Überprüft ein sicheres Kennwort, das 8, 9 oder 10 Zeichen enthalten muss, zusätzlich zu mindestens einer Ziffer und mindestens einem alphabetisches Zeichen. Die Zeichenfolge darf keine Sonderzeichen enthalten.                                        | **FALSE** |
-| **IsMatch( "<http://microsoft.com>", "(ht&#124;f)tp(s?)\:\/\/\[0-9a-zA-Z\]([-.\w]\*[0-9a-zA-Z])\*(:(0-9)\*)\*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]\*)?" )** |                                                                                                                     Überprüft eine http-, https- oder ftp-URL                                                                                                                      | **TRUE**  |
+|                                                                    **IsMatch( "986"; "\d+" )**                                                                    |                                                                                                                    Ordnet eine ganze Zahl größer als 0 (null) zu                                                                                                                     | **TRUE**  |
+|                                                               **IsMatch( "1.02"; "\d+(\.\d\d)?" )**                                                               |                                        Ordnet einen positiven Währungsbetrag zu Wenn die Eingabe ein Dezimaltrennzeichen enthält, muss die Eingabe auch zwei numerische Zeichen nach dem Dezimaltrennzeichen enthalten. 3,00 ist beispielsweise gültig, aber 3,1 nicht.                                         | **TRUE**  |
+|                                                            **IsMatch( "-4.95"; "(-)?\d+(\.\d\d)?" )**                                                             |                                                        Ordnet einen positiven oder negativen Währungsbetrag zu. Wenn die Eingabe ein Dezimaltrennzeichen enthält, muss die Eingabe auch zwei numerische Zeichen nach dem Dezimaltrennzeichen enthalten.                                                        | **TRUE**  |
+|                                                         **IsMatch( "111-11-1111"; "\d{3}-\d{2}-\d{4}" )**                                                         | Ordnet eine US-Sozialversicherungsnummer zu  Überprüft das Format, den Typ und die Länge des angegebenen Eingabefelds. Die Zeichenfolge, die übereinstimmen soll, muss aus drei numerischen Zeichen gefolgt von einem Bindestrich und dann 2 numerische Zeichen gefolgt von einem Bindestrich und dann 4 numerischen Zeichen bestehen. | **TRUE**  |
+|                                                         **IsMatch( "111-111-111"; "\d{3}-\d{2}-\d{4}" )**                                                         |                                                                                               Wie im vorherigen Beispiel, aber einer der Bindestriche ist in der Eingabe an der falschen Stelle                                                                                               | **FALSE** |
+|                                         **IsMatch( "weakpassword"; "(?!^[0-9]\*$)(?!^[a-zA-Z]\*$)([a-zA-Z0-9]{8,10})" )**                                         |                                        Überprüft ein sicheres Kennwort, das 8, 9 oder 10 Zeichen enthalten muss, zusätzlich zu mindestens einer Ziffer und mindestens einem alphabetisches Zeichen. Die Zeichenfolge darf keine Sonderzeichen enthalten.                                        | **FALSE** |
+| **IsMatch( "<http://microsoft.com>"; "(ht&#124;f)tp(s?)\:\/\/\[0-9a-zA-Z\]([-.\w]\*[0-9a-zA-Z])\*(:(0-9)\*)\*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]\*)?" )** |                                                                                                                     Überprüft eine http-, https- oder ftp-URL                                                                                                                      | **TRUE**  |
 

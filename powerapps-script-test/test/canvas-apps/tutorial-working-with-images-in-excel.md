@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 11/22/2018
 ms.locfileid: "42852365"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="how-to-save-images-in-an-excel-file-and-then-add-these-images-to-your-app"></a>So speichern Sie Bilder in einer Excel-Datei und fügen diese Bilder anschließend zu Ihrer App hinzu
 
@@ -58,7 +59,7 @@ In diesem Tutorial werden wir:
    
    ![Umbenennen](./media/tutorial-working-with-images-in-excel/rename-mypen.png)
 4. Fügen Sie ein Steuerelement **Schaltfläche** (Menü **Einfügen**) hinzu, und legen Sie dessen Eigenschaft **OnSelect** auf die folgende Formel fest:  
-   `Patch(Drawings, Defaults(Drawings), {Image:MyPen.Image})`
+   `Patch(Drawings; Defaults(Drawings); {Image:MyPen.Image})`
 5. Fügen Sie ein Steuerelement **Bildkatalog** (Menü **Einfügen** > **Katalog**) hinzu, und legen Sie dessen Eigenschaft **Elemente** auf `Drawings` fest. Die Eigenschaft **Image** des Katalog-Steuerelements wird automatisch auf `ThisItem.Image` festgelegt.
    
    Ihr Bildschirm sollte etwa wie folgt aussehen:  

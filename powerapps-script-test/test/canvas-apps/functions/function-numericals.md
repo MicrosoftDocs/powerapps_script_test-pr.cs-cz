@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42827250"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="abs-exp-ln-power-and-sqrt-functions-in-powerapps"></a>Funktionen „Abs“, „Exp“, „Ln“, „Power“ und „Sqrt“ in PowerApps
 Berechnen Absolutwerte, natürliche Logarithmen, Quadratwurzeln und die Ergebnisse der Potenzierung von *e* oder einer beliebigen Zahl zur angegebenen Potenz.
@@ -43,7 +44,7 @@ Wenn ein Argument zu einem nicht definierten Wert führen würde, ist das Ergebn
 
 * *Number*: erforderlich. Zahl, die verarbeitet wird.
 
-**Power**( *Basis*, *Exponent* )
+**Power**( *Basis*; *Exponent* )
 
 * *Basis*: erforderlich. Zu potenzierende Basiszahl.
 * *Exponent*: erforderlich. Der Exponent, zu dem die Basiszahl potenziert wird.
@@ -60,7 +61,7 @@ Wenn ein Argument zu einem nicht definierten Wert führen würde, ist das Ergebn
 | **Abs( -55 )** |Gibt die Zahl ohne das negative Vorzeichen zurück. |55 |
 | **Exp( 2 )** |Gibt die 2. Potenz von *e* zurück, also *e* \* *e*. |7,389056... |
 | **Ln( 100 )** |Gibt den natürlichen Logarithmus (zur Basis *e*) der Zahl 100 zurück. |4,605170... |
-| **Power( 5; 3 )** |Gibt die 3. Potenz von 5 zurück, also 5 \* 5 \* 5. |125 |
+| **Power( 5;; 3 )** |Gibt die 3. Potenz von 5 zurück, also 5 \* 5 \* 5. |125 |
 | **Sqrt( 9 )** |Gibt die Zahl zurück, die mit sich selbst multipliziert 9 ergibt. |3 |
 
 ### <a name="single-column-table"></a>Einspaltige Tabelle

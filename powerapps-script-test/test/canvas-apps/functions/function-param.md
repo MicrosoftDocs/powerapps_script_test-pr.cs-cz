@@ -19,6 +19,7 @@ ms.translationtype: HT
 ms.contentlocale: cs-CZ
 ms.lasthandoff: 08/24/2018
 ms.locfileid: "42860015"
+ms.PowerAppsDecimalTransform: true
 ---
 # <a name="download-launch-and-param-functions-in-powerapps"></a>Download-, Launch- und Param-Funktionen in PowerApps
 Lädt eine Webseite herunter oder startet eine Webseite oder eine App mit Parametern.  
@@ -35,7 +36,7 @@ Die **Param**-Funktion ruft einen an die App übergebenen Parameter ab, wenn sie
 
 * *Address*: Erforderlich.  Die Adresse einer Webressource, die heruntergeladen werden soll.
 
-**Launch**( *Address* [, *ParameterName1*, *ParameterValue1*, ... ] )
+**Launch**( *Address* [; *ParameterName1*; *ParameterValue1*; ... ] )
 
 * *Address*: Erforderlich.  Die Adresse einer Webseite oder die ID einer App, die gestartet werden soll.
 * *ParameterName(s)*: Optional.  Parametername
